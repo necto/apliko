@@ -7,6 +7,9 @@ create user joe with password 'lapass';
 create database bids;
 grant all privileges on database bids to joe;
 
+\c bids
+set role joe;
+
 create table claims (
        id integer primary key,
        name text
