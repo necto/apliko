@@ -14,14 +14,15 @@
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("authPU");
     EntityManager em = emf.createEntityManager();
     em.getTransaction().begin();
-    UsersEntity user = new UsersEntity();
-    user.setUserName(request.getParameter("user-name"));
-    user.setUserPass(request.getParameter("user-password"));
-    em.persist(user);
-    UserRolesEntity role = new UserRolesEntity();
-    role.setUserName(request.getParameter("user-name"));
-    role.setRoleName(request.getParameter("user-role"));
-    em.persist(role);
+    for ( String name : request.getParameterValues("user"))
+    {
+        for (Object role: em.createQuery("select r from UserRolesEntity r " +
+                "where r.userName = '" + name + "'")
+                .getResultList())
+            em.remove( role);
+        UsersEntity user = em.find(UsersEntity.class, name);
+        em.remove(user);
+    }
     em.getTransaction().commit();
 %>
 <a href="manage.jsp"> back</a>

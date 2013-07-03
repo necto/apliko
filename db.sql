@@ -53,8 +53,13 @@ create table user_roles (
 
 insert into users values ('tom', 'aga');
 insert into users values ('jerry', 'jer');
+insert into users values ('customer1', 'customer');
+insert into users values ('manager1', 'manager');
+
 insert into user_roles values ('tom', 'manager-script');
 insert into user_roles values ('jerry', 'manager-gui');
+insert into user_roles values ('customer1', 'customer');
+insert into user_roles values ('manager1', 'manager');
 
 grant select on users to tomcat_auth;
 grant select on user_roles to tomcat_auth;
