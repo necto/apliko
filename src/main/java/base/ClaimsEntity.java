@@ -5,11 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created with IntelliJ IDEA.
  * User: estet
  * Date: 7/2/13
  * Time: 5:27 PM
- * To change this template use File | Settings | File Templates.
  */
 @javax.persistence.Table(name = "claims", schema = "public", catalog = "bids")
 @Entity
