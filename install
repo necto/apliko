@@ -1,0 +1,42 @@
+1. Install: maven2, tomcat7 (with tomcat7-admin), postgreSQL9
+2. Configure postgreSQL9:
+  a. Add *password* method authentification for users: joe, bids_admin, tomcat_auth and
+        *trust* for user postgresql into pg_hba.conf:
+           sudo emacs /etc/postgresql/9.1/main/pg_hba.conf  :
+                local   all             postgres                                trust
+                local   all             joe                                     password
+                local   all             bids_admin                              password
+                local   all             tomcat_auth                             password
+           sudo service postgresql restart
+  b. Initialize DB schemas:
+        psql -U postgres -f db.sql
+3. Configure tomcat7:
+   a. Put postgreSQL JDBC driver into $CATALINA_HOME/lib directory:
+        cd /usr/share/tomcat7/lib
+        sudo wget http://jdbc.postgresql.org/download/postgresql-9.2-1002.jdbc4.jar
+   b. Change authentication realm in server.xml:
+        sudo emacs /etc/tomcat7/server.xml :
+             <Realm className="org.apache.catalina.realm.JDBCRealm"
+                    driverName="org.postgresql.Driver"
+                    connectionURL="jdbc:postgresql://localhost/bids_auth?user=tomcat_auth&amp;password=tomcat_188"
+                    userTable="users" userNameCol="user_name" userCredCol="user_pass"
+                    userRoleTable="user_roles" roleNameCol="role_name"/>
+        sudo service tomcat7 restart
+   c. Check that user jerry can access administration panel:
+        chromium-browser http://localhost:8080/manager/html
+4. Configure maven:
+  Add a server node into your local settings:
+        emacs ~/.m2/settings.xml :
+        <settings>
+          <servers>
+              <server>
+                <id>tmct</id>
+                <username>tom</username>
+                <password>aga</password>
+              </server>
+          </servers>
+        </settings>
+5. Build&deploy the application:
+        mvn tomcat7:deploy
+6. Visit localhos:8080/apliko
+
