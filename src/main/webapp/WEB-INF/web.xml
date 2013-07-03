@@ -3,5 +3,17 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+  <display-name>IT support request list web manager.</display-name>
+  <filter>
+    <filter-name>LogFilter</filter-name>
+    <filter-class>LogFilter</filter-class>
+    <init-param>
+      <param-name>test-param</param-name>
+      <param-value>Initialization Paramter</param-value>
+   </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>LogFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 </web-app>
