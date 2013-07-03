@@ -4,6 +4,8 @@
     <title>sample apliko page</title>
   </head>
   <body>
+
+  <a href="manage.jsp"> manage users</a>
     <h2>Enter some text in order to add it to our DB</h2>
     <form action="accept.jsp">
       <input type="text" name="claim-name"/>

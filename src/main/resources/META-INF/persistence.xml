@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
 
-    <persistence-unit name="persUnit">
-        <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <class>base.ClaimsEntity</class>
+  <persistence-unit name="persUnit">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>base.ClaimsEntity</class>
+    <properties>
+      <property name="hibernate.connection.url" value="jdbc:postgresql://localhost/bids?useUnicode=true&amp;characterEncoding=utf8"/>
+      <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+      <property name="hibernate.connection.username" value="joe"/>
+      <property name="hibernate.connection.password" value="lapass"/>
+    </properties>
+  </persistence-unit>
+    <persistence-unit name="authPU">
+        <class>base.UserRolesEntity</class>
+        <class>base.UsersEntity</class>
         <properties>
-            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost/bids?useUnicode=true&amp;characterEncoding=utf8"/>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost/bids_auth"/>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
-            <property name="hibernate.connection.username" value="joe"/>
-            <property name="hibernate.connection.password" value="lapass"/>
+            <property name="hibernate.connection.username" value="bids_admin"/>
+            <property name="hibernate.connection.password" value="11111"/>
         </properties>
     </persistence-unit>
 </persistence>
