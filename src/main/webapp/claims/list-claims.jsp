@@ -1,7 +1,6 @@
 <%@ page import="javax.persistence.EntityManagerFactory" %>
 <%@ page import="javax.persistence.EntityManager" %>
 <%@ page import="javax.persistence.Persistence" %>
-<%@ page import="base.ClaimsEntity" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
