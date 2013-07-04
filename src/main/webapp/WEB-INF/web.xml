@@ -6,9 +6,7 @@
   <display-name>IT support request list web manager.</display-name>
   <security-constraint>
     <web-resource-collection>
-       <url-pattern>/manage.jsp</url-pattern>
-       <url-pattern>/add-user.jsp</url-pattern>
-       <url-pattern>/delete-user.jsp</url-pattern>
+       <url-pattern>/accs/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
        <role-name>manager</role-name>
@@ -16,8 +14,7 @@
   </security-constraint>
     <security-constraint>
         <web-resource-collection>
-            <url-pattern>/index.jsp</url-pattern>
-            <url-pattern>/accept.jsp</url-pattern>
+            <url-pattern>/claims/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>manager</role-name>
