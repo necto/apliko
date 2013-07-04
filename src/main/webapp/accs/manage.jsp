@@ -16,7 +16,14 @@
                 EntityManager em = emf.createEntityManager();
                 for (Object entity : em.createQuery("select u from UsersEntity u").getResultList()) {
                     UsersEntity user = (UsersEntity)entity;
-                    out.println("<li><input type=\"checkbox\" name=\"user\" value=\"" + user.getUserName() + "\"/>");
+                    out.print("<li>");
+
+                    out.println("<input type=\"checkbox\"" +
+                                " name=\"user\" value=\"" +
+                                user.getUserName() + "\"");
+                    if ( user.getUserName().equals(request.getUserPrincipal().getName()))
+                        out.println(" disabled ");
+                    out.println("/>");
                     out.println(user.getUserName());
                     out.println(" <b>roles</b>: ");
                     for (Object role: em.createQuery("select r.roleName from UserRolesEntity r " +

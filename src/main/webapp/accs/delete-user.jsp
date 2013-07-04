@@ -13,11 +13,13 @@
         em.getTransaction().begin();
         for ( String name : request.getParameterValues("user"))
         {
+            UsersEntity user = em.find(UsersEntity.class, name);
+            if ( user.getUserName().equals(request.getUserPrincipal().getName()) )
+                throw new RuntimeException( "User can't delete himself!");
             for (Object role: em.createQuery("select r from UserRolesEntity r " +
                     "where r.userName = '" + name + "'")
                     .getResultList())
                 em.remove( role);
-            UsersEntity user = em.find(UsersEntity.class, name);
             em.remove(user);
         }
         em.getTransaction().commit();
