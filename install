@@ -38,5 +38,5 @@
         </settings>
 5. Build&deploy the application:
         mvn tomcat7:deploy
-6. Visit localhos:8080/apliko
+6. Visit localhost:8080/apliko
 

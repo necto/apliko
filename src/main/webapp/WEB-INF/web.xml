@@ -4,4 +4,31 @@
 
 <web-app>
   <display-name>IT support request list web manager.</display-name>
+  <security-constraint>
+    <web-resource-collection>
+       <url-pattern>/manage.jsp</url-pattern>
+       <url-pattern>/add-user.jsp</url-pattern>
+       <url-pattern>/delete-user.jsp</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+       <role-name>manager</role-name>
+    </auth-constraint>
+  </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <url-pattern>/index.jsp</url-pattern>
+            <url-pattern>/accept.jsp</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>manager</role-name>
+            <role-name>customer</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/login.jsp</form-login-page>
+            <form-error-page>/login.jsp?auth-error=true</form-error-page>
+        </form-login-config>
+    </login-config>
 </web-app>
