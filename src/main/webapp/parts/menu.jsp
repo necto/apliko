@@ -3,7 +3,7 @@
     <div>
         You are logged in as:
         <%= request.getUserPrincipal().getName() %>
-        <a href="logout.jsp">logout</a>
+        <a href="<%=request.getContextPath()%>/logout.jsp">logout</a>
     </div>
     <% } else { %>
     <div> You are not logged in.</div>
