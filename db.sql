@@ -23,7 +23,15 @@ set role joe;
 
 create table claims (
        id serial primary key,
-       name text
+       name text,
+       buildings_list text,
+       room text,
+       device_type text,
+       device_number text,
+       problem_description text,
+       priority text,
+       comment text,
+       telephone text
 );
 
 ---------------------------
