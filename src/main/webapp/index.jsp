@@ -11,10 +11,6 @@
   <% } %>
 
   <h3> Menu: </h3>
-  <ul>
-    <li><a href="accs/manage.jsp"> manage users</a></li>
-    <li><a href="claims/add-claim.jsp"> add a claim</a></li>
-    <li><a href="claims/list-claims.jsp"> list all claims</a></li>
-  </ul>
+  <%@include file="/parts/menu.jsp"%>
   </body>
 </html>

@@ -26,5 +26,6 @@
     em.getTransaction().commit();
 %>
 <a href="manage.jsp"> back</a>
+
 </body>
 </html>

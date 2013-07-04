@@ -20,6 +20,6 @@
   %>
   <a href="list-claims.jsp"> list all claims</a>
 
-
+  <%@include file="/parts/menu.jsp"%>
 </body>
 </html>

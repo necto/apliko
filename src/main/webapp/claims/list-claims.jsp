@@ -20,5 +20,6 @@
     %>
 </ul>
 </p>
+<%@include file="/parts/menu.jsp"%>
 </body>
 </html>

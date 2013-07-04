@@ -40,6 +40,6 @@
           <input type="radio" name="user-role" value="customer" checked/> Customer
     <input type="submit"/>
 </form>
-
+<%@include file="/parts/menu.jsp"%>
 </body>
 </html>

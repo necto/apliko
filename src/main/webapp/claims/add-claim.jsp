@@ -10,6 +10,6 @@
     Claim name: <input type="text" name="claim-name"/> <br/>
     <input type="submit" />
 </form>
-
+<%@include file="/parts/menu.jsp"%>
 </body>
 </html>
