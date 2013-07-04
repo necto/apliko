@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
-<stripes:layout-render name="/layout/basic.jsp">
+<stripes:layout-render name="/layout/default.jsp">
 <stripes:layout-component name="title"> Add a new claim </stripes:layout-component>
 <stripes:layout-component name="content">
     <form action="accept-claim.jsp">

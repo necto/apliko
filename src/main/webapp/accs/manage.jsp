@@ -4,7 +4,7 @@
 <%@ page import="base.UsersEntity" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
-<stripes:layout-render name="/layout/basic.jsp">
+<stripes:layout-render name="/layout/default.jsp">
 <stripes:layout-component name="title"> User management page </stripes:layout-component>
 <stripes:layout-component name="content">
     <h3> Users in the system: </h3>
