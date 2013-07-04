@@ -5,9 +5,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%!
-    private int mnum = 35;
-%>
 <html>
 <head>
     <title></title>
@@ -21,7 +18,7 @@
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        ClaimsEntity clm = new ClaimsEntity( mnum++, request.getParameter("claim-name"));
+        ClaimsEntity clm = new ClaimsEntity( request.getParameter("claim-name"));
         em.persist( clm);
         em.getTransaction().commit();
         for (Object entity : em.createQuery("select m from ClaimsEntity m").getResultList()) {

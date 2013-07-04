@@ -1,8 +1,6 @@
 package base;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * User: estet
@@ -17,13 +15,17 @@ public class ClaimsEntity {
 
     public ClaimsEntity(){}
 
-    public ClaimsEntity( int id, String name)
+    public ClaimsEntity( String name)
     {
-        this.id = id;
         this.name = name;
     }
 
     @javax.persistence.Column(name = "id")
+    @SequenceGenerator(name="claims_id_seq",
+            sequenceName="claims_id_seq",
+            allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator="claims_id_seq")
     @Id
     public int getId() {
         return id;

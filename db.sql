@@ -22,7 +22,7 @@ grant all privileges on database bids to joe;
 set role joe;
 
 create table claims (
-       id integer primary key,
+       id serial primary key,
        name text
 );
 
