@@ -7,9 +7,10 @@
             <stripes:layout-component name="title"/>
         </stripes:layout-component>
         <stripes:layout-component name="content">
-            <stripes:layout-component name="content"/>
 
             <%@include file="/parts/menu.jsp"%>
+
+            <stripes:layout-component name="content"/>
         </stripes:layout-component>
     </stripes:layout-render>
 </stripes:layout-definition>
