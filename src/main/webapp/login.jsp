@@ -1,6 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
 
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/static/style.css">
+    <title>Login</title>
+</head>
 
 <% if (request.getParameter("auth-error") == "true") { %>
 <div style="margin-bottom:1em;margin-top:1em;color:red;">
