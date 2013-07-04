@@ -3,23 +3,18 @@
 <%@ page import="javax.persistence.EntityManager" %>
 <%@ page import="base.ClaimsEntity" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-  <p> Accepted claim: <b> <%=request.getParameter("claim-name") %></b></p> <br/>
-  <%
-      EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
-      EntityManager em = emf.createEntityManager();
-      em.getTransaction().begin();
-      ClaimsEntity clm = new ClaimsEntity( request.getParameter("claim-name"));
-      em.persist( clm);
-      em.getTransaction().commit();
-  %>
-  <a href="list-claims.jsp"> list all claims</a>
-
-  <%@include file="/parts/menu.jsp"%>
-</body>
-</html>
+<%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
+<stripes:layout-render name="/layout/basic.jsp">
+<stripes:layout-component name="title"> Accepted claim </stripes:layout-component>
+<stripes:layout-component name="content">
+    <p> Accepted claim: <b> <%=request.getParameter("claim-name") %></b></p> <br/>
+    <%
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        ClaimsEntity clm = new ClaimsEntity( request.getParameter("claim-name"));
+        em.persist( clm);
+        em.getTransaction().commit();
+    %>
+</stripes:layout-component>
+</stripes:layout-render>

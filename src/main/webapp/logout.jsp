@@ -1,12 +1,9 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/static/style.css">
-    <title>Logout</title>
-</head>
-<body>
+<%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
+<stripes:layout-render name="/layout/basic.jsp">
+<stripes:layout-component name="title"> Logout </stripes:layout-component>
+<stripes:layout-component name="content">
     <% request.getSession().invalidate();%>
     You are now logged out. <a href="index.jsp"> return </a>
-</body>
-</html>
+</stripes:layout-component>
+</stripes:layout-render>
