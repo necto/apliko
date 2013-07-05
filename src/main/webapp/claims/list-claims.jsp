@@ -1,5 +1,6 @@
 <%@ page import="base.DataBase" %>
 <%@ page import="base.entities.ClaimsEntity" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <stripes:layout-render name="/layout/default.jsp">
@@ -8,7 +9,10 @@
     <p> All stored names:
     <ul>
         <%
-            for (ClaimsEntity claim : DataBase.listClaims()) {
+            List<ClaimsEntity> claims = DataBase.listClaims(request.getParameterMap());
+        %>
+        <%
+            for (ClaimsEntity claim : claims) {
                 out.print("<li><a href=\"view-claim.jsp?id=");
                 out.print(claim.getId());
                 out.print("\">");

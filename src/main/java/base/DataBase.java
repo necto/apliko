@@ -2,6 +2,8 @@ package base;
 
 import base.entities.ClaimsEntity;
 import base.entities.UsersEntity;
+import util.FilterGenerator;
+import util.SortingGenerator;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -63,18 +65,22 @@ public class DataBase {
         em.getTransaction().commit();
     }
 
-    public static List<UsersEntity> listUsers()
+    public static List<UsersEntity> listUsers(Map<String, String[]> params)
     {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("authPU");
         EntityManager em = emf.createEntityManager();
-        return em.createQuery("select u from UsersEntity u").getResultList();
+        return em.createQuery("select u from UsersEntity u " +
+                new FilterGenerator(params).variable("u").generate() +
+                new SortingGenerator(params).variable("u").generate()).getResultList();
     }
 
-    public static List<ClaimsEntity> listClaims()
+    public static List<ClaimsEntity> listClaims(Map<String, String[]> params)
     {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
         EntityManager em = emf.createEntityManager();
-        return em.createQuery("select m from ClaimsEntity m").getResultList();
+        return em.createQuery("select m from ClaimsEntity m " +
+                               new FilterGenerator(params).variable("m").generate() +
+                               new SortingGenerator(params).variable("m").generate()).getResultList();
     }
 
     public static ClaimsEntity getClaim( Integer id)

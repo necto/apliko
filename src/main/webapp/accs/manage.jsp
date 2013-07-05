@@ -13,7 +13,7 @@
     <form action="delete-user.jsp">
         <ul>
             <%
-                for (UsersEntity user : DataBase.listUsers()) {
+                for (UsersEntity user : DataBase.listUsers(request.getParametersMap())) {
                     out.print("<li>");
 
                     out.println("<input type=\"checkbox\"" +
