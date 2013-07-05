@@ -1,12 +1,13 @@
 package base;
 
 import base.entities.ClaimsEntity;
-import base.entities.UserRolesEntity;
 import base.entities.UsersEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class DataBase {
@@ -18,10 +19,6 @@ public class DataBase {
         for ( String name : names)
         {
             UsersEntity user = em.find(UsersEntity.class, name);
-            for (Object role: em.createQuery("select r from UserRolesEntity r " +
-                    "where r.userName = '" + name + "'")
-                    .getResultList())
-                em.remove( role);
             em.remove(user);
         }
         em.getTransaction().commit();
@@ -34,11 +31,12 @@ public class DataBase {
         UsersEntity user = new UsersEntity();
         user.setUserName(parameters.get("user-name")[0]);
         user.setUserPass(parameters.get("user-password")[0]);
+
+        List<String> roles = new ArrayList<String>();
+        roles.add(parameters.get("user-role")[0]);
+
+        user.setRoles(roles);
         em.persist(user);
-        UserRolesEntity role = new UserRolesEntity();
-        role.setUserName(parameters.get("user-name")[0]);
-        role.setRoleName(parameters.get("user-role")[0]);
-        em.persist(role);
         em.getTransaction().commit();
     }
 

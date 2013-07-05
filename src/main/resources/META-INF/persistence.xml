@@ -12,7 +12,6 @@
     </properties>
   </persistence-unit>
     <persistence-unit name="authPU">
-        <class>base.entities.UserRolesEntity</class>
         <class>base.entities.UsersEntity</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:postgresql://localhost/bids_auth"/>

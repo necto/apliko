@@ -1,8 +1,7 @@
 package base.entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,6 +15,7 @@ import javax.persistence.Id;
 public class UsersEntity {
     private String userName;
     private String userPass;
+    private List<String> roles;
 
     @javax.persistence.Column(name = "user_name")
     @Id
@@ -55,5 +55,19 @@ public class UsersEntity {
         int result = userName != null ? userName.hashCode() : 0;
         result = 31 * result + (userPass != null ? userPass.hashCode() : 0);
         return result;
+    }
+
+    @ElementCollection
+    @CollectionTable(
+            name="user_roles",
+            joinColumns=@JoinColumn(name="user_name")
+    )
+    @Column(name = "role_name")
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
     }
 }

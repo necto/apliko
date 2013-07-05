@@ -26,10 +26,8 @@
                     out.println("/>");
                     out.println(user.getUserName());
                     out.println(" <b>roles</b>: ");
-                    for (Object role: em.createQuery("select r.roleName from UserRolesEntity r " +
-                            "where r.userName = '" + user.getUserName() + "'")
-                            .getResultList())
-                        out.println(role + ", ");
+
+                    out.println(user.getRoles());
                     out.print("</li>");
                 }
             %>
