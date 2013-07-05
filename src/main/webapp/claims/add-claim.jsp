@@ -10,7 +10,7 @@
             <tr>
                 <td>Ваша фамилия, имя, отчество</td>
                 <td>
-                    <input type="text" name="name, surname" />
+                    <input type="text" name="name" />
                 </td>
             </tr>
             <tr>

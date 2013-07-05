@@ -12,6 +12,14 @@ import javax.persistence.*;
 public class ClaimsEntity {
     private int id;
     private String name;
+    private String telephone;
+    private String buildings_list;
+    private String room;
+    private String device_type;
+    private String device_number;
+    private String problem_description;
+    private String priority;
+    private String comment;
 
     public ClaimsEntity(){}
 
@@ -44,6 +52,90 @@ public class ClaimsEntity {
     public void setName(String name) {
         this.name = name;
     }
+    
+    @javax.persistence.Column(name = "telephone")
+    @Basic
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    @javax.persistence.Column(name = "buildings_list")
+    @Basic
+    public String getBuildings_list() {
+        return buildings_list;
+    }
+
+    public void setBuildings_list(String buildings_list) {
+        this.buildings_list = buildings_list;
+    }
+
+    @javax.persistence.Column(name = "room")
+    @Basic
+    public String getRoom() {
+        return room;
+    }
+
+    public void setRoom(String room) {
+        this.room = room;
+    }
+
+    @javax.persistence.Column(name = "device_type")
+    @Basic
+    public String getDevice_type() {
+        return device_type;
+    }
+
+    public void setDevice_type(String device_type) {
+        this.device_type = device_type;
+    }
+
+    @javax.persistence.Column(name = "device_number")
+    @Basic
+    public String getDevice_number() {
+        return device_number;
+    }
+
+    public void setDevice_number(String device_number) {
+        this.device_number = device_number;
+    }
+
+    @javax.persistence.Column(name = "problem_description")
+    @Basic
+    public String getProblem_description() {
+        return problem_description;
+    }
+
+    public void setProblem_description(String problem_description) {
+        this.problem_description = problem_description;
+    }
+
+    @javax.persistence.Column(name = "priority")
+    @Basic
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
+    @javax.persistence.Column(name = "comment")
+    @Basic
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+    
+    
+    
+    
 
     @Override
     public boolean equals(Object o) {
