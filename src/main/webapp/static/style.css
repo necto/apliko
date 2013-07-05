@@ -20,6 +20,7 @@ body {
 html, body {
     height: 100%;
 }
+
 .page-wrap {
     min-height: 100%;
     /* equal to footer height */
@@ -74,41 +75,70 @@ a:link:hover {
    text-decoration: underline;
 }
 
-#menu ul
-{
+
+#menu ul {
     list-style-type:none;
-    position: relative;
+    width:auto;
+    position:relative;
+    display:block;
+    height:33px;
+    font-size:.8em;
+    background:url(bg.png) repeat-x top left;
+    font-family:Verdana,Helvetica,Arial,sans-serif;
+    border:1px solid #000;
     margin:0;
     padding:0;
-    overflow:hidden;
 }
 
-#menu li
-{
+#menu li {
+    display:block;
     float:right;
+    margin:0;
+    padding:0;
 }
 
-#menu li a,
-#login a{
-    display: block;
-    padding: 8px 15px;
-    text-decoration: none;
-    font-weight: bold;
-    color: #069;
-    border-right: 1px solid #ccc; }
+#menu li > a,
+#menu li > #login {
+    float:right;
+    color:#A79787;
+    text-decoration:none;
+    height:24px;
+    padding:9px 15px 0;
+    font-weight:normal;
+}
 
 #username {
-    font-weight: bold;
     text-decoration: underline;
+    font-weight: bold;
 }
 
-#menu li a,
-#login a:hover {
-    color: #c00;
-    background-color: #fff;
+#menu li #login a {
+    color: #86a36b;
 }
 
-#login {
-    text-align: right;
-    float:right;
+#menu li > a:hover,
+#menu li > #login a:hover,
+#menu .active {
+    color:#fff;
+    background:url(bg.png) repeat-x top left;
+    text-decoration:none;
+}
+
+#menu .active > a,
+#menu .active > #login{
+    color:#fff;
+    font-weight:700;
+}
+
+#menu ul {
+    background-color:#629600;
+}
+#menu li > a:hover,
+#menu li > #login a:hover,
+#menu li.active {
+    background-color:#7AB900;
+}
+
+#menu #username {
+    display:inline-block;
 }

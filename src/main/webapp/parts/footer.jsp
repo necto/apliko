@@ -1,3 +1,3 @@
 <div id="footer" class="site-footer">
-    Copyright 2013 MIPT
+    Copyright MIPT 2013
 </div>
