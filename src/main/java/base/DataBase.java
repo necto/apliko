@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -40,12 +41,13 @@ public class DataBase {
         em.getTransaction().commit();
     }
 
-    public static void addClaim( Map<String, String[]> params)
+    public static void addClaim( Map<String, String[]> params, String user)
     {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        ClaimsEntity clm = new ClaimsEntity( params.get("name")[0]);
+        ClaimsEntity clm = new ClaimsEntity();
+        clm.setName(params.get("name")[0]);
         clm.setTelephone(params.get("telephone")[0]);
         clm.setBuildings_list(params.get("buildings_list")[0]);
         clm.setRoom(params.get("room")[0]);
@@ -53,6 +55,10 @@ public class DataBase {
         clm.setDevice_number(params.get("device_number")[0]);
         clm.setProblem_description(params.get("problem_description")[0]);
         clm.setPriority(params.get("priority")[0]);
+        clm.setComment(params.get("comment")[0]);
+        clm.setDate(new Date());
+        clm.setStatus("No status !!!");
+        clm.setUserName(user);
         em.persist( clm);
         em.getTransaction().commit();
     }
@@ -64,11 +70,17 @@ public class DataBase {
         return em.createQuery("select u from UsersEntity u").getResultList();
     }
 
-
     public static List<ClaimsEntity> listClaims()
     {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
         EntityManager em = emf.createEntityManager();
         return em.createQuery("select m from ClaimsEntity m").getResultList();
+    }
+
+    public static ClaimsEntity getClaim( Integer id)
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
+        EntityManager em = emf.createEntityManager();
+        return em.find(ClaimsEntity.class, id);
     }
 }

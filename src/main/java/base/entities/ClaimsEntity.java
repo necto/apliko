@@ -1,7 +1,7 @@
 package base.entities;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * User: estet
@@ -13,6 +13,7 @@ import java.sql.Date;
 public class ClaimsEntity {
     private int id;
     private String name;
+    private String userName;
     private String telephone;
     private String buildings_list;
     private String room;
@@ -27,13 +28,6 @@ public class ClaimsEntity {
     private String problemDescription;
     private Date date;
     private String status;
-    
-    public ClaimsEntity(){}
-
-    public ClaimsEntity( String name)
-    {
-        this.name = name;
-    }
 
     @Column(name = "id")
     @SequenceGenerator(name="claims_id_seq",
@@ -60,6 +54,16 @@ public class ClaimsEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Column(name = "user_name")
+    @Basic
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     @Column(name = "telephone")

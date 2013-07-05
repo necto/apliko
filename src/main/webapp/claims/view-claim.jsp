@@ -1,18 +1,12 @@
-<%@ page import="javax.persistence.EntityManagerFactory" %>
-<%@ page import="javax.persistence.Persistence" %>
-<%@ page import="javax.persistence.EntityManager" %>
-<%@ page import="base.ClaimsEntity" %>
+<%@ page import="base.entities.ClaimsEntity" %>
+<%@ page import="base.DataBase" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <stripes:layout-render name="/layout/default.jsp">
     <stripes:layout-component name="title"> Просмотр заявки: </stripes:layout-component>
     <stripes:layout-component name="content">
         <%
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
-            EntityManager em = emf.createEntityManager();
-                Integer id = 1;
-                ClaimsEntity claim = em.find(ClaimsEntity.class, id);
-                
+            ClaimsEntity claim = DataBase.getClaim(Integer.parseInt(request.getParameter("id")));
         %>
         <h3>Просмотр заявки.</h3>
         <table border="1">
@@ -21,18 +15,14 @@
                     <td>
                         ФИО подавшего заявку:
                     </td>
-                    <td><%
-                        out.print(claim.getName());
-                        %></td>
+                    <td><%=claim.getName()%></td>
                 </tr>
                 <tr>
                     <td>
                         Контактный телефон
                     </td>
                     <td>
-                        <%
-                        out.print(claim.getTelephone());
-                        %>
+                        <%=claim.getTelephone()%>
                     </td>
                 </tr>
                 <tr>
@@ -40,9 +30,7 @@
                         Корпус
                     </td>
                     <td>
-                        <%
-                        out.print(claim.getBuildings_list());
-                        %>
+                        <%=claim.getBuildings_list()%>
                     </td>
                 </tr>
                 <tr>
@@ -50,9 +38,7 @@
                         Кабинет
                     </td>
                     <td>
-                        <%
-                        out.print(claim.getRoom());
-                        %>
+                        <%=claim.getRoom()%>
                     </td>
                 </tr>
                 <tr>
@@ -60,9 +46,7 @@
                         Тип и модель оборудования
                     </td>
                     <td>
-                        <%
-                        out.print(claim.getDevice_type());
-                        %>
+                        <%=claim.getDevice_type()%>
                     </td>
                 </tr>
                 <tr>
@@ -70,9 +54,7 @@
                         Сервисный номер оборудования
                     </td>
                     <td>
-                        <%
-                        out.print(claim.getDevice_number());
-                        %>
+                        <%=claim.getDevice_number()%>
                     </td>
                 </tr>
                 <tr>
@@ -80,9 +62,7 @@
                         Описание проблемы
                     </td>
                     <td>
-                        <%
-                        out.print(claim.getProblem_description());
-                        %>
+                        <%=claim.getProblem_description()%>
                     </td>
                 </tr>
                 <tr>
@@ -90,9 +70,7 @@
                         Приоритет
                     </td>
                     <td>
-                        <%
-                        out.print(claim.getPriority());
-                        %>
+                        <%=claim.getPriority()%>
                     </td>
                 </tr>
                 <tr>
@@ -100,9 +78,7 @@
                         Дополнительный комментарий
                     </td>
                     <td>
-                        <%
-                        out.print(claim.getComment());
-                        %>
+                        <%=claim.getComment()%>
                     </td>
                 </tr>
             </tbody>

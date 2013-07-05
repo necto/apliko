@@ -6,7 +6,7 @@
 <stripes:layout-component name="content">
     <p> Accepted claim: <b> <%=request.getParameter("name") %></b></p> <br/>
     <%
-            DataBase.addClaim(request.getParameterMap());
+            DataBase.addClaim(request.getParameterMap(), request.getUserPrincipal().getName());
     %>
 </stripes:layout-component>
 </stripes:layout-render>
