@@ -1,20 +1,41 @@
 /* 
     Document   : style
     Created on : 04.07.2013, 11:31:31
-    Author     : dmitry
+    Author     : dmitry,estet
     Description:
         Purpose of the stylesheet follows.
 */
 
-root { 
-    display: block;
+* {
+    padding: 0;
 }
 
 body {
     font-family: Verdana, Arial, sans-serif;
     font-size: smaller;
-    padding: 50px;
     color: #555;
+    margin:0;
+}
+
+html, body {
+    height: 100%;
+}
+.page-wrap {
+    min-height: 100%;
+    /* equal to footer height */
+    margin-bottom: -36px;
+}
+.page-wrap:after {
+    content: "";
+    display: block;
+}
+.site-footer, .page-wrap:after {
+    /* .push must be the same height as footer */
+    height: 36px;
+}
+.site-footer {
+    border-top: 1px solid #000;
+    color: #999;
 }
 
 h1 {
@@ -90,16 +111,4 @@ a:link:hover {
 #login {
     text-align: right;
     float:right;
-}
-
-#body {
-    padding:10px;
-    padding-bottom:60px;   /* Height of the footer */
-}
-
-#footer {
-    position:absolute;
-    bottom:0;
-    width:100%;
-    height:60px;   /* Height of the footer */
 }

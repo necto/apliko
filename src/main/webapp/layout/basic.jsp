@@ -10,7 +10,9 @@
     </head>
     <body>
 
-    <div id="body">
+    <div id="top"><stripes:layout-component name="top"/></div>
+
+    <div class="page-wrap" id="body">
         <stripes:layout-component name="content"/>
     </div>
 
