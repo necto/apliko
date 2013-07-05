@@ -32,13 +32,21 @@ public class DataBase {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         UsersEntity user = new UsersEntity();
-        user.setUserName(parameters.get("user-name")[0]);
-        user.setUserPass(parameters.get("user-password")[0]);
+        user.setUserName(parameters.get("user_name")[0]);
+        user.setUserPass(parameters.get("user_pass")[0]);
 
         List<String> roles = new ArrayList<String>();
         roles.add(parameters.get("user-role")[0]);
 
         user.setRoles(roles);
+        user.setName(parameters.get("name")[0]);
+        user.setSurname(parameters.get("surname")[0]);
+        user.setMiddleName("middle_name");
+        user.setBuilding("buildings_list");
+        user.setUnit("unit");
+        user.setTelephone("telephone");
+
+        
         em.persist(user);
         em.getTransaction().commit();
     }
