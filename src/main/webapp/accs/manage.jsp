@@ -13,22 +13,22 @@
         <form action="delete-user.jsp">
             <ul>
                 <%
-                    for (UsersEntity user : DataBase.listUsers()) {
-                        out.print("<li>");
+                for (UsersEntity user : DataBase.listUsers(request.getParameterMap())) {
+                    out.print("<li>");
 
-                        out.println("<input type=\"checkbox\"" +
-                                    " name=\"user\" value=\"" +
-                                    user.getUserName() + "\"");
-                        if ( user.getUserName().equals(request.getUserPrincipal().getName()))
-                            out.println(" disabled ");
-                        out.println("/>");
-                        out.println(user.getUserName());
-                        out.println(" <b>roles</b>: ");
+                    out.println("<input type=\"checkbox\"" +
+                                " name=\"user\" value=\"" +
+                                user.getUserName() + "\"");
+                    if ( user.getUserName().equals(request.getUserPrincipal().getName()))
+                        out.println(" disabled ");
+                    out.println("/>");
+                    out.println(user.getUserName());
+                    out.println(" <b>roles</b>: ");
 
-                        out.println(user.getRoles());
-                        out.print("</li>");
-                    }
-                %>
+                    out.println(user.getRoles());
+                    out.print("</li>");
+                }
+            %>
             </ul>
             <button type="submit" >delete </button>
         </form>
