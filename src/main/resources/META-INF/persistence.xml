@@ -3,7 +3,7 @@
 
   <persistence-unit name="persUnit">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
-    <class>base.ClaimsEntity</class>
+    <class>base.entities.ClaimsEntity</class>
     <properties>
       <property name="hibernate.connection.url" value="jdbc:postgresql://localhost/bids?useUnicode=true&amp;characterEncoding=utf8"/>
       <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
@@ -12,8 +12,7 @@
     </properties>
   </persistence-unit>
     <persistence-unit name="authPU">
-        <class>base.UserRolesEntity</class>
-        <class>base.UsersEntity</class>
+        <class>base.entities.UsersEntity</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:postgresql://localhost/bids_auth"/>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
