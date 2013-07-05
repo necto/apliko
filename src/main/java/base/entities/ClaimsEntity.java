@@ -1,13 +1,14 @@
 package base.entities;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 /**
  * User: estet
  * Date: 7/2/13
  * Time: 5:27 PM
  */
-@javax.persistence.Table(name = "claims", schema = "public", catalog = "bids")
+@Table(name = "claims", schema = "public", catalog = "bids")
 @Entity
 public class ClaimsEntity {
     private int id;
@@ -20,7 +21,13 @@ public class ClaimsEntity {
     private String problem_description;
     private String priority;
     private String comment;
-
+    private String buildingsList;
+    private String deviceType;
+    private String deviceNumber;
+    private String problemDescription;
+    private Date date;
+    private String status;
+    
     public ClaimsEntity(){}
 
     public ClaimsEntity( String name)
@@ -28,7 +35,7 @@ public class ClaimsEntity {
         this.name = name;
     }
 
-    @javax.persistence.Column(name = "id")
+    @Column(name = "id")
     @SequenceGenerator(name="claims_id_seq",
             sequenceName="claims_id_seq",
             allocationSize=1)
@@ -43,7 +50,7 @@ public class ClaimsEntity {
         this.id = id;
     }
 
-    @javax.persistence.Column(name = "name")
+    @Column(name = "name")
     @Basic
     public String getName() {
         return name;
@@ -52,8 +59,8 @@ public class ClaimsEntity {
     public void setName(String name) {
         this.name = name;
     }
-    
-    @javax.persistence.Column(name = "telephone")
+
+    @Column(name = "telephone")
     @Basic
     public String getTelephone() {
         return telephone;
@@ -63,7 +70,7 @@ public class ClaimsEntity {
         this.telephone = telephone;
     }
 
-    @javax.persistence.Column(name = "buildings_list")
+    @Column(name = "buildings_list")
     @Basic
     public String getBuildings_list() {
         return buildings_list;
@@ -73,7 +80,7 @@ public class ClaimsEntity {
         this.buildings_list = buildings_list;
     }
 
-    @javax.persistence.Column(name = "room")
+    @Column(name = "room")
     @Basic
     public String getRoom() {
         return room;
@@ -83,7 +90,7 @@ public class ClaimsEntity {
         this.room = room;
     }
 
-    @javax.persistence.Column(name = "device_type")
+    @Column(name = "device_type")
     @Basic
     public String getDevice_type() {
         return device_type;
@@ -93,7 +100,7 @@ public class ClaimsEntity {
         this.device_type = device_type;
     }
 
-    @javax.persistence.Column(name = "device_number")
+    @Column(name = "device_number")
     @Basic
     public String getDevice_number() {
         return device_number;
@@ -102,8 +109,8 @@ public class ClaimsEntity {
     public void setDevice_number(String device_number) {
         this.device_number = device_number;
     }
-
-    @javax.persistence.Column(name = "problem_description")
+    
+    @Column(name = "problem_description")
     @Basic
     public String getProblem_description() {
         return problem_description;
@@ -113,7 +120,7 @@ public class ClaimsEntity {
         this.problem_description = problem_description;
     }
 
-    @javax.persistence.Column(name = "priority")
+    @Column(name = "priority")
     @Basic
     public String getPriority() {
         return priority;
@@ -123,7 +130,7 @@ public class ClaimsEntity {
         this.priority = priority;
     }
 
-    @javax.persistence.Column(name = "comment")
+    @Column(name = "comment")
     @Basic
     public String getComment() {
         return comment;
@@ -132,10 +139,6 @@ public class ClaimsEntity {
     public void setComment(String comment) {
         this.comment = comment;
     }
-    
-    
-    
-    
 
     @Override
     public boolean equals(Object o) {
@@ -160,5 +163,26 @@ public class ClaimsEntity {
     @Override
     public String toString() {
         return "{" + new Integer(id) + ":" + name + "}";
+    }
+
+
+    @Column(name = "date")
+    @Basic
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    @Column(name = "status")
+    @Basic
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

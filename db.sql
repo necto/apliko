@@ -22,16 +22,18 @@ grant all privileges on database bids to joe;
 set role joe;
 
 create table claims (
-       id serial primary key,
-       name text,
-       buildings_list text,
-       room text,
-       device_type text,
-       device_number text,
-       problem_description text,
-       priority text,
-       comment text,
-       telephone text
+       id                   serial primary key,
+       name                 text,
+       buildings_list       text,
+       room                 text,
+       device_type          text,
+       device_number        text,
+       problem_description  text,
+       priority             text,
+       comment              text,
+       telephone            text,
+       date                 date,
+       status               text
 );
 
 ---------------------------
@@ -49,13 +51,19 @@ grant all privileges on database bids_auth to bids_admin;
 set role bids_admin;
 
 create table users (
-  user_name         varchar(15) not null primary key,
-  user_pass         varchar(15) not null
+  user_name         text not null primary key,
+  user_pass         text not null,
+  name              text,
+  surname           text,
+  middle_name       text,
+  building          text,
+  unit              text,
+  telephone         text
 );
 
 create table user_roles (
-  user_name         varchar(15) not null,
-  role_name         varchar(15) not null,
+  user_name         text not null,
+  role_name         text not null,
   primary key (user_name, role_name)
 );
 

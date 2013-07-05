@@ -10,14 +10,14 @@ import java.util.List;
  * Time: 5:52 PM
  * To change this template use File | Settings | File Templates.
  */
-@javax.persistence.Table(name = "users", schema = "public", catalog = "bids_auth")
+@Table(name = "users", schema = "public", catalog = "bids_auth")
 @Entity
 public class UsersEntity {
     private String userName;
     private String userPass;
     private List<String> roles;
 
-    @javax.persistence.Column(name = "user_name")
+    @Column(name = "user_name")
     @Id
     public String getUserName() {
         return userName;
@@ -27,7 +27,7 @@ public class UsersEntity {
         this.userName = userName;
     }
 
-    @javax.persistence.Column(name = "user_pass")
+    @Column(name = "user_pass")
     @Basic
     public String getUserPass() {
         return userPass;
@@ -69,5 +69,77 @@ public class UsersEntity {
 
     public void setRoles(List<String> roles) {
         this.roles = roles;
+    }
+
+    private String name;
+
+    @Column(name = "name")
+    @Basic
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    private String surname;
+
+    @Column(name = "surname")
+    @Basic
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    private String middleName;
+
+    @Column(name = "middle_name")
+    @Basic
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    private String building;
+
+    @Column(name = "building")
+    @Basic
+    public String getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(String building) {
+        this.building = building;
+    }
+
+    private String unit;
+
+    @Column(name = "unit")
+    @Basic
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    private String telephone;
+
+    @Column(name = "telephone")
+    @Basic
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 }
