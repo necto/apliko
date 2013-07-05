@@ -67,7 +67,7 @@ public class DataBase {
 
     public static List<ClaimsEntity> listClaims()
     {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("authPU");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
         EntityManager em = emf.createEntityManager();
         return em.createQuery("select m from ClaimsEntity m").getResultList();
     }
