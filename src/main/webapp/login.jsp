@@ -11,7 +11,7 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td><label>User Password</label>></td>
+                <td><label>User Password</label></td>
                 <td><input type="password" name="j_password" maxlength="20" style="width:150px;"/></td>
                 <td><button type="submit" > login </button></td>
             </tr>

@@ -1,8 +1,9 @@
-<%@ page import="javax.persistence.EntityManagerFactory" %>
-<%@ page import="javax.persistence.Persistence" %>
-<%@ page import="javax.persistence.EntityManager" %>
+<%@ page isELIgnored ="false" %>
 <%@ page import="base.entities.UsersEntity" %>
+<%@ page import="base.DataBase" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <stripes:layout-render name="/layout/default.jsp">
 <stripes:layout-component name="title"> User management page </stripes:layout-component>
@@ -12,10 +13,7 @@
     <form action="delete-user.jsp">
         <ul>
             <%
-                EntityManagerFactory emf = Persistence.createEntityManagerFactory("authPU");
-                EntityManager em = emf.createEntityManager();
-                for (Object entity : em.createQuery("select u from UsersEntity u").getResultList()) {
-                    UsersEntity user = (UsersEntity)entity;
+                for (UsersEntity user : DataBase.listUsers()) {
                     out.print("<li>");
 
                     out.println("<input type=\"checkbox\"" +

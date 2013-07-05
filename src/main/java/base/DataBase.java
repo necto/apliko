@@ -56,4 +56,19 @@ public class DataBase {
         em.persist( clm);
         em.getTransaction().commit();
     }
+
+    public static List<UsersEntity> listUsers()
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("authPU");
+        EntityManager em = emf.createEntityManager();
+        return em.createQuery("select u from UsersEntity u").getResultList();
+    }
+
+
+    public static List<ClaimsEntity> listClaims()
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("authPU");
+        EntityManager em = emf.createEntityManager();
+        return em.createQuery("select m from ClaimsEntity m").getResultList();
+    }
 }
