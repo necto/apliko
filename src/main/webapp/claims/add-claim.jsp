@@ -5,7 +5,7 @@
 <stripes:layout-component name="content">
     <form action="accept-claim.jsp">
         <h3>Сведения для заявки:</h3>
-        <table border="1" width="6">
+        <table class="form" border="1" width="6">
             <tbody>
             <tr>
                 <td>Ваша фамилия, имя, отчество</td>

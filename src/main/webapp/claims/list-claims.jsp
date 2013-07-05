@@ -87,20 +87,29 @@
         </form></li>
     </ul>
     <h2>Found claims: </h2>
-    <ul>
-        <%
-            List<ClaimsEntity> claims = DataBase.listClaims(request.getParameterMap());
-        %>
+    <%
+        List<ClaimsEntity> claims = DataBase.listClaims(request.getParameterMap());
+    %>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Status</th>
+        </tr>
         <%
             for (ClaimsEntity claim : claims) {
-                out.print("<li><a href=\"view-claim.jsp?id=");
-                out.print(claim.getId());
-                out.print("\">");
+                String link = "<a href=\"view-claim.jsp?id=" + claim.getId() + "\">";
+                out.print("<tr>");
+                out.print("<th>" + link);
                 out.print(claim.getName());
-                out.println("</a></li>");
+                out.print("</a></th><th>" + link);
+                out.print(claim.getTelephone());
+                out.print("</a></th><th>" + link);
+                out.print(claim.getStatus());
+                out.println("</a></th></tr>");
             }
         %>
-    </ul>
+    </table>
     </p>
 </stripes:layout-component>
 </stripes:layout-render>

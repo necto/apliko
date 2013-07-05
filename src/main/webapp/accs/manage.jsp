@@ -35,7 +35,7 @@
         <h3> Добавить нового пользователя.</h3>
 
         <form action="add-user.jsp" method="post">
-            <table border="1">
+            <table class="form" border="1">
                 <tbody>
                     <tr>
                         <td>Ник пользователя:</td>
