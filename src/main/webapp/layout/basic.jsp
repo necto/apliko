@@ -10,7 +10,9 @@
     </head>
     <body>
 
-    <stripes:layout-component name="content"/>
+    <div id="body">
+        <stripes:layout-component name="content"/>
+    </div>
 
     <%@include file="/parts/footer.jsp"%>
     </body>

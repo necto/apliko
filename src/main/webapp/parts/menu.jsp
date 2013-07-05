@@ -1,13 +1,15 @@
 <div id="menu">
+    <div id="login">
     <% if ( request.getUserPrincipal() != null ) { %>
-    <div>
         You are logged in as:
-        <%= request.getUserPrincipal().getName() %>
+        <div id="username">
+            <%= request.getUserPrincipal().getName() %>
+        </div>
         <a href="<%=request.getContextPath()%>/logout.jsp">logout</a>
-    </div>
     <% } else { %>
-    <div> You are not logged in.</div>
+        You are not logged in.
     <% } %>
+    </div>
 
     <ul>
         <li><a href="<%=request.getContextPath()%>/accs/manage.jsp"> manage users</a></li>
