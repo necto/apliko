@@ -1,28 +1,15 @@
-<%@ page import="javax.persistence.EntityManagerFactory" %>
-<%@ page import="javax.persistence.Persistence" %>
-<%@ page import="javax.persistence.EntityManager" %>
-<%@ page import="base.UsersEntity" %>
+<%@ page import="java.util.Arrays" %>
+<%@ page import="base.DataBase" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <stripes:layout-render name="/layout/default.jsp">
 <stripes:layout-component name="title"> Users deleted </stripes:layout-component>
 <stripes:layout-component name="content">
     <%
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("authPU");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        for ( String name : request.getParameterValues("user"))
-        {
-            UsersEntity user = em.find(UsersEntity.class, name);
-            if ( user.getUserName().equals(request.getUserPrincipal().getName()) )
-                throw new RuntimeException( "User can't delete himself!");
-            for (Object role: em.createQuery("select r from UserRolesEntity r " +
-                    "where r.userName = '" + name + "'")
-                    .getResultList())
-                em.remove( role);
-            em.remove(user);
-        }
-        em.getTransaction().commit();
+        String [] names = request.getParameterValues("user");
+        if (Arrays.asList(names).contains(request.getUserPrincipal().getName()) )
+            throw new RuntimeException( "User can't delete himself!");
+        DataBase.deleteUser(names);
     %>
     <a href="manage.jsp"> back</a>
 </stripes:layout-component>

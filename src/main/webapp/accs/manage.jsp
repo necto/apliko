@@ -1,7 +1,7 @@
 <%@ page import="javax.persistence.EntityManagerFactory" %>
 <%@ page import="javax.persistence.Persistence" %>
 <%@ page import="javax.persistence.EntityManager" %>
-<%@ page import="base.UsersEntity" %>
+<%@ page import="base.entities.UsersEntity" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <stripes:layout-render name="/layout/default.jsp">

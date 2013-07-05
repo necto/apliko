@@ -1,8 +1,7 @@
-package base;
+package base.entities;
 
-import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.io.Serializable;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,20 +10,25 @@ import java.io.Serializable;
  * Time: 5:52 PM
  * To change this template use File | Settings | File Templates.
  */
-public class UserRolesEntityPK implements Serializable {
+@javax.persistence.IdClass(UserRolesEntityPK.class)
+@javax.persistence.Table(name = "user_roles", schema = "public", catalog = "bids_auth")
+@Entity
+public class UserRolesEntity {
     private String userName;
     private String roleName;
 
-@Id@Column(name = "user_name")
-public String getUserName() {
-    return userName;
-}
+    @javax.persistence.Column(name = "user_name")
+    @Id
+    public String getUserName() {
+        return userName;
+    }
 
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    @Id@Column(name = "role_name")
+    @javax.persistence.Column(name = "role_name")
+    @Id
     public String getRoleName() {
         return roleName;
     }
@@ -38,7 +42,7 @@ public String getUserName() {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UserRolesEntityPK that = (UserRolesEntityPK) o;
+        UserRolesEntity that = (UserRolesEntity) o;
 
         if (roleName != null ? !roleName.equals(that.roleName) : that.roleName != null) return false;
         if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
@@ -51,4 +55,5 @@ public String getUserName() {
         int result = userName != null ? userName.hashCode() : 0;
         result = 31 * result + (roleName != null ? roleName.hashCode() : 0);
         return result;
-}}
+    }
+}
