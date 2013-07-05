@@ -51,11 +51,11 @@ public class DataBase {
         ClaimsEntity clm = new ClaimsEntity();
         clm.setName(params.get("name")[0]);
         clm.setTelephone(params.get("telephone")[0]);
-        clm.setBuildings_list(params.get("buildings_list")[0]);
+        clm.setBuildingsList(params.get("buildings_list")[0]);
         clm.setRoom(params.get("room")[0]);
-        clm.setDevice_type(params.get("device_type")[0]);
-        clm.setDevice_number(params.get("device_number")[0]);
-        clm.setProblem_description(params.get("problem_description")[0]);
+        clm.setDeviceType(params.get("device_type")[0]);
+        clm.setDeviceNumber(params.get("device_number")[0]);
+        clm.setProblemDescription(params.get("problem_description")[0]);
         clm.setPriority(params.get("priority")[0]);
         clm.setComment(params.get("comment")[0]);
         clm.setDate(new Date());
