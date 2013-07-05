@@ -75,15 +75,29 @@
                 </tr>
                 <tr>
                     <td>
+                        Дата подачи заявки:
+                    </td>
+                    <td>
+                        <%=claim.getDate()%>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         Дополнительный комментарий
                     </td>
                     <td>
                         <%=claim.getComment()%>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        Статус:
+                    </td>
+                    <td>
+                        <%=claim.getStatus()%>
+                    </td>
+                </tr>
             </tbody>
         </table>
-        <td><button type="submit" > Назад </button></td>
-
     </stripes:layout-component>
 </stripes:layout-render>
