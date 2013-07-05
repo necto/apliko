@@ -46,6 +46,8 @@ public class ClaimsEntity {
     @javax.persistence.Column(name = "name")
     @Basic
     public String getName() {
+        if(name==null)
+            return "(пусто)";
         return name;
     }
 
@@ -56,6 +58,8 @@ public class ClaimsEntity {
     @javax.persistence.Column(name = "telephone")
     @Basic
     public String getTelephone() {
+        if(telephone==null)
+            return "(пусто)";
         return telephone;
     }
 
@@ -76,6 +80,8 @@ public class ClaimsEntity {
     @javax.persistence.Column(name = "room")
     @Basic
     public String getRoom() {
+        if(room==null)
+            return "(пусто)";
         return room;
     }
 
@@ -86,6 +92,8 @@ public class ClaimsEntity {
     @javax.persistence.Column(name = "device_type")
     @Basic
     public String getDevice_type() {
+        if(device_type==null)
+            return "(пусто)";
         return device_type;
     }
 
@@ -96,6 +104,8 @@ public class ClaimsEntity {
     @javax.persistence.Column(name = "device_number")
     @Basic
     public String getDevice_number() {
+        if(device_number==null)
+            return "(пусто)";
         return device_number;
     }
 
@@ -106,6 +116,8 @@ public class ClaimsEntity {
     @javax.persistence.Column(name = "problem_description")
     @Basic
     public String getProblem_description() {
+        if(problem_description==null)
+            return "(пусто)";
         return problem_description;
     }
 
@@ -126,6 +138,8 @@ public class ClaimsEntity {
     @javax.persistence.Column(name = "comment")
     @Basic
     public String getComment() {
+        if(comment==null)
+            return "(пусто)";
         return comment;
     }
 

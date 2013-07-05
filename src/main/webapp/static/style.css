@@ -75,6 +75,15 @@ a:link:hover {
    text-decoration: underline;
 }
 
+button {
+    color: #444;
+    display: block;
+    font: normal 14px arial, sans-serif;
+    height: 32px;
+    margin-right: 6px;
+    padding-right: 0px; /* sliding doors padding */
+    text-decoration: none;
+}
 
 #menu ul {
     list-style-type:none;
