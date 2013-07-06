@@ -15,11 +15,7 @@ public class ClaimsEntity {
     private String name;
     private String userName;
     private String telephone;
-    private String buildings_list;
     private String room;
-    private String device_type;
-    private String device_number;
-    private String problem_description;
     private String priority;
     private String comment;
     private String buildingsList;
@@ -80,12 +76,12 @@ public class ClaimsEntity {
 
     @Column(name = "buildings_list")
     @Basic
-    public String getBuildings_list() {
-        return buildings_list;
+    public String getBuildingsList() {
+        return buildingsList;
     }
 
-    public void setBuildings_list(String buildings_list) {
-        this.buildings_list = buildings_list;
+    public void setBuildingsList(String buildingsList) {
+        this.buildingsList = buildingsList;
     }
 
     @Column(name = "room")
@@ -102,38 +98,38 @@ public class ClaimsEntity {
 
     @Column(name = "device_type")
     @Basic
-    public String getDevice_type() {
-        if(device_type==null)
+    public String getDeviceType() {
+        if(deviceType==null)
             return "(пусто)";
-        return device_type;
+        return deviceType;
     }
 
-    public void setDevice_type(String device_type) {
-        this.device_type = device_type;
+    public void setDeviceType(String deviceType) {
+        this.deviceType = deviceType;
     }
 
     @Column(name = "device_number")
     @Basic
-    public String getDevice_number() {
-        if(device_number==null)
+    public String getDeviceNumber() {
+        if(deviceNumber==null)
             return "(пусто)";
-        return device_number;
+        return deviceNumber;
     }
 
-    public void setDevice_number(String device_number) {
-        this.device_number = device_number;
+    public void setDeviceNumber(String deviceNumber) {
+        this.deviceNumber = deviceNumber;
     }
     
     @Column(name = "problem_description")
     @Basic
-    public String getProblem_description() {
-        if(problem_description==null)
+    public String getProblemDescription() {
+        if(problemDescription==null)
             return "(пусто)";
-        return problem_description;
+        return problemDescription;
     }
 
-    public void setProblem_description(String problem_description) {
-        this.problem_description = problem_description;
+    public void setProblemDescription(String problemDescription) {
+        this.problemDescription = problemDescription;
     }
 
     @Column(name = "priority")

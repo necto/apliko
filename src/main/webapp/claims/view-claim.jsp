@@ -30,7 +30,7 @@
                         Корпус
                     </td>
                     <td>
-                        <%=claim.getBuildings_list()%>
+                        <%=claim.getBuildingsList()%>
                     </td>
                 </tr>
                 <tr>
@@ -46,7 +46,7 @@
                         Тип и модель оборудования
                     </td>
                     <td>
-                        <%=claim.getDevice_type()%>
+                        <%=claim.getDeviceType()%>
                     </td>
                 </tr>
                 <tr>
@@ -54,7 +54,7 @@
                         Сервисный номер оборудования
                     </td>
                     <td>
-                        <%=claim.getDevice_number()%>
+                        <%=claim.getDeviceNumber()%>
                     </td>
                 </tr>
                 <tr>
@@ -62,7 +62,7 @@
                         Описание проблемы
                     </td>
                     <td>
-                        <%=claim.getProblem_description()%>
+                        <%=claim.getProblemDescription()%>
                     </td>
                 </tr>
                 <tr>
