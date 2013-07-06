@@ -30,6 +30,8 @@ public class UsersEntity {
     @Column(name = "user_pass")
     @Basic
     public String getUserPass() {
+        if(userPass==null)
+            return "(пусто)";
         return userPass;
     }
 
@@ -76,6 +78,8 @@ public class UsersEntity {
     @Column(name = "name")
     @Basic
     public String getName() {
+        if(name==null)
+            return "(пусто)";
         return name;
     }
 
@@ -88,6 +92,8 @@ public class UsersEntity {
     @Column(name = "surname")
     @Basic
     public String getSurname() {
+        if(surname==null)
+            return "(пусто)";
         return surname;
     }
 
@@ -100,6 +106,8 @@ public class UsersEntity {
     @Column(name = "middle_name")
     @Basic
     public String getMiddleName() {
+        if(middleName==null)
+            return "(пусто)";
         return middleName;
     }
 
@@ -112,6 +120,8 @@ public class UsersEntity {
     @Column(name = "building")
     @Basic
     public String getBuilding() {
+        if(building==null)
+            return "(пусто)";
         return building;
     }
 
@@ -124,6 +134,8 @@ public class UsersEntity {
     @Column(name = "unit")
     @Basic
     public String getUnit() {
+        if(unit==null)
+            return "(пусто)";
         return unit;
     }
 
@@ -136,6 +148,8 @@ public class UsersEntity {
     @Column(name = "telephone")
     @Basic
     public String getTelephone() {
+        if(telephone==null)
+            return "(пусто)";
         return telephone;
     }
 

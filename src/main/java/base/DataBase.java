@@ -97,4 +97,11 @@ public class DataBase {
         EntityManager em = emf.createEntityManager();
         return em.find(ClaimsEntity.class, id);
     }
+    public static UsersEntity getUser( String userName)
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("authPU");
+        EntityManager em = emf.createEntityManager();
+        UsersEntity user = em.find(UsersEntity.class, userName);
+        return user;
+    }
 }
