@@ -1,11 +1,16 @@
 <%@ page import="base.DataBase" %>
 <%@ page import="base.entities.ClaimsEntity" %>
 <%@ page import="java.util.List" %>
+<%@ page import="util.FilterGenerator" %>
+<%@ page import="util.SortingGenerator" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <stripes:layout-render name="/layout/default.jsp">
 <stripes:layout-component name="title"> List of all claims </stripes:layout-component>
 <stripes:layout-component name="content">
+    <%
+        SortingGenerator srt = new SortingGenerator(request.getParameterMap());
+    %>
     <p> Filter by:
     <ul>
     <li>user_name
@@ -92,10 +97,9 @@
     %>
     <table>
         <tr>
-            <th>Name <a onclick='follow(insertParam("sort-dir", "desc", insertParam("sort", "name")))'> &uarr;</a>
-                     <a onclick='follow(insertParam("sort-dir", "asc", insertParam("sort", "name")))'>&darr;</a></th>
-            <th>Phone</th>
-            <th>Status</th>
+            <th><%=srt.makeColumnHeader("Name", "name")%></th>
+            <th><%=srt.makeColumnHeader("Phone", "telephone")%></th>
+            <th><%=srt.makeColumnHeader("Status", "status")%></th>
         </tr>
         <%
             for (ClaimsEntity claim : claims) {

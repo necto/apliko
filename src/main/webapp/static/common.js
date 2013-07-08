@@ -2,7 +2,7 @@ function insertParam(key, value, url)
 {
     key = encodeURI(key); value = encodeURI(value);
 
-    if ( typeof url != undefined )
+    if ( typeof url == "undefined" )
         url = document.location.search.substr(1);
 
     var kvp = url.split('&');
