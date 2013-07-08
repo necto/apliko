@@ -58,26 +58,20 @@ public class DataBase {
         clm.setMiddleName(params.get("middle_name")[0]);
         clm.setSurname(params.get("surname")[0]);
         clm.setTelephone(params.get("telephone")[0]);
-        BuildingsEntity building = (BuildingsEntity)
-                em.createQuery("select b from BuildingsEntity b where b.name = '" +
-                               params.get("building")[0] + "'").getSingleResult();
-        clm.setBuilding( building);
-        UnitsEntity unit = (UnitsEntity)
-                em.createQuery("select u from UnitsEntity u where u.name = '" +
-                        params.get("unit")[0] + "'").getSingleResult();
-        clm.setUnit(unit);
+        clm.setBuilding( em.find(BuildingsEntity.class,
+                                 Integer.parseInt(params.get("building")[0])));
+        clm.setUnit( em.find(UnitsEntity.class,
+                             Integer.parseInt(params.get("unit")[0])));
         clm.setRoom(params.get("room")[0]);
         clm.setDeviceType(params.get("device_type")[0]);
         clm.setDeviceNumber(params.get("device_number")[0]);
         clm.setProblemDescription(params.get("problem_description")[0]);
-        PrioritiesEntity pr = (PrioritiesEntity)
-                em.createQuery("select p from PrioritiesEntity p where p.name = '" +
-                        params.get("priority")[0] + "'").getSingleResult();
-        clm.setPriority(pr);
+        clm.setPriority(em.find(PrioritiesEntity.class,
+                                Integer.parseInt(params.get("priority")[0])));
         clm.setComment(params.get("comment")[0]);
         clm.setServiceNumber(params.get("service_number")[0]);
         clm.setDate(new Date());
-        clm.setStatus(em.find(StatusesEntity.class, 0));
+        clm.setStatus(em.find(StatusesEntity.class, 1));
         em.persist( clm);
         em.getTransaction().commit();
     }
@@ -129,14 +123,14 @@ public class DataBase {
 
     public static List<TownsEntity> listTowns()
     {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("authPU");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
         EntityManager em = emf.createEntityManager();
         return em.createQuery("select t from TownsEntity t").getResultList();
     }
 
     public static void addTown( String name)
     {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("authPU");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
@@ -148,7 +142,7 @@ public class DataBase {
 
     public static void addBuildings( String[] names, String town_name)
     {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("authPU");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
@@ -167,7 +161,7 @@ public class DataBase {
 
     public static void addUnit( String name)
     {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("authPU");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
@@ -179,8 +173,15 @@ public class DataBase {
 
     public static List<UnitsEntity> listUnits()
     {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("authPU");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
         EntityManager em = emf.createEntityManager();
         return em.createQuery("select u from UnitsEntity u").getResultList();
+    }
+
+    public static List<PrioritiesEntity> listPriorities()
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
+        EntityManager em = emf.createEntityManager();
+        return em.createQuery("select p from PrioritiesEntity p").getResultList();
     }
 }

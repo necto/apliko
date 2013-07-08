@@ -1,3 +1,8 @@
+<%@ page import="base.DataBase" %>
+<%@ page import="base.entities.TownsEntity" %>
+<%@ page import="base.entities.BuildingsEntity" %>
+<%@ page import="base.entities.UnitsEntity" %>
+<%@ page import="base.entities.PrioritiesEntity" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <stripes:layout-render name="/layout/default.jsp">
@@ -35,11 +40,18 @@
             <tr>
                 <td>Корпус (связан с городком)</td>
                 <td>
-                    <select name="buildings_list">
-                        <option>Учебный корпус №1</option>
-                        <option>Учебный корпус №2</option>
-                        <option>Учебный корпус №3</option>
-                        <option>Учебный корпус №4</option>
+                    <select name="building">
+                        <%
+                            for ( TownsEntity town : DataBase.listTowns())
+                            {
+                                out.println("<option disabled>" + town.getName() + "</option>");
+                                for (BuildingsEntity building : town.getBuildings())
+                                {
+                                    out.println("<option value=\"" + building.getId() +
+                                            "\">" + building.getName() + "</option>");
+                                }
+                            }
+                        %>
                     </select>
                 </td>
             </tr>
@@ -48,7 +60,15 @@
                     Подразделение
                 </td>
                 <td>
-                    <input type="text" name="unit" />
+                    <select name="unit">
+                        <%
+                            for (UnitsEntity unit: DataBase.listUnits())
+                            {
+                                out.println("<option value=\"" + unit.getId() +
+                                        "\">" + unit.getName() + "</option>");
+                            }
+                        %>
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -79,9 +99,13 @@
                 <td>Приоритет</td>
                 <td>
                     <select name="priority">
-                        <option>Высокий</option>
-                        <option>Средний</option>
-                        <option>Низкий</option>
+                        <%
+                            for (PrioritiesEntity pr: DataBase.listPriorities())
+                            {
+                                out.println("<option value=\"" + pr.getId() +
+                                        "\">" + pr.getName() + "</option>");
+                            }
+                        %>
                     </select>
                 </td>
             </tr>
