@@ -49,8 +49,9 @@
                         <td>
                             Роль:
                         </td>
-                        <td>Role: <input type="radio" name="user-role" value="manager"/> Manager
-                         <input type="radio" name="user-role" value="customer" checked/> Customer
+                        <td><input type="radio" name="user-role" value="manager"/> Manager
+                            <input type="radio" name="user-role" value="customer" checked/> Customer
+                            <input type="radio" name="user-role" value="performer" checked/> Performer
                 </td>
                 </tr>
                 <tr>
