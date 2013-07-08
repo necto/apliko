@@ -14,6 +14,12 @@ public class UsersEntity {
     private String userName;
     private String userPass;
     private List<String> roles;
+    private String name;
+    private String surname;
+    private String middleName;
+    private String building;
+    private String unit;
+    private String telephone;
 
     @Column(name = "user_name")
     @Id
@@ -71,8 +77,6 @@ public class UsersEntity {
         this.roles = roles;
     }
 
-    private String name;
-
     @Column(name = "name")
     @Basic
     public String getName() {
@@ -84,8 +88,6 @@ public class UsersEntity {
     public void setName(String name) {
         this.name = name;
     }
-
-    private String surname;
 
     @Column(name = "surname")
     @Basic
@@ -99,8 +101,6 @@ public class UsersEntity {
         this.surname = surname;
     }
 
-    private String middleName;
-
     @Column(name = "middle_name")
     @Basic
     public String getMiddleName() {
@@ -112,8 +112,6 @@ public class UsersEntity {
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
     }
-
-    private String building;
 
     @Column(name = "building")
     @Basic
@@ -127,8 +125,6 @@ public class UsersEntity {
         this.building = building;
     }
 
-    private String unit;
-
     @Column(name = "unit")
     @Basic
     public String getUnit() {
@@ -140,8 +136,6 @@ public class UsersEntity {
     public void setUnit(String unit) {
         this.unit = unit;
     }
-
-    private String telephone;
 
     @Column(name = "telephone")
     @Basic
