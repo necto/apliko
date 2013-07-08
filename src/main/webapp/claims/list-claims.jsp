@@ -100,6 +100,7 @@
             <th><%=srt.makeColumnHeader("Name", "name")%></th>
             <th><%=srt.makeColumnHeader("Phone", "telephone")%></th>
             <th><%=srt.makeColumnHeader("Status", "status")%></th>
+
         </tr>
         <%
             for (ClaimsEntity claim : claims) {
@@ -107,11 +108,13 @@
                 out.print("<tr>");
                 out.print("<td>" + link);
                 out.print(claim.getName());
-                out.print("</a></td><td>" + link);
+                out.print("</a></td>");
+                out.print("<td>" + link);
                 out.print(claim.getTelephone());
                 out.print("</a></td><td>" + link);
                 out.print(claim.getStatus());
-                out.println("</a></td></tr>");
+                out.println("</a>");
+                out.println("</td></tr>");
             }
         %>
     </table>

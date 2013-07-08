@@ -8,9 +8,21 @@
         <table class="form" border="1" width="6">
             <tbody>
             <tr>
-                <td>Ваша фамилия, имя, отчество</td>
+                <td>Ваша фамилия</td>
+                <td>
+                    <input type="text" name="surname" />
+                </td>
+            </tr>
+            <tr>
+                <td>Ваше имя</td>
                 <td>
                     <input type="text" name="name" />
+                </td>
+            </tr>
+            <tr>
+                <td>Ваше отчество</td>
+                <td>
+                    <input type="text" name="middle_name" />
                 </td>
             </tr>
             <tr>
@@ -19,6 +31,7 @@
                     <input type="text" name="telephone" />
                 </td>
             </tr>
+            <!-- Town? -->
             <tr>
                 <td>Корпус (связан с городком)</td>
                 <td>
@@ -28,6 +41,14 @@
                         <option>Учебный корпус №3</option>
                         <option>Учебный корпус №4</option>
                     </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Подразделение
+                </td>
+                <td>
+                    <input type="text" name="unit" />
                 </td>
             </tr>
             <tr>
@@ -51,8 +72,7 @@
             <tr>
                 <td>Описание проблемы</td>
                 <td>
-                    <textarea name="problem_description" rows="4" cols="30">
-                    </textarea>
+                    <textarea name="problem_description" rows="4" cols="30"></textarea>
                 </td>
             </tr>
             <tr>
@@ -68,8 +88,15 @@
             <tr>
                 <td>Дополнительный комментарий</td>
                 <td>
-                    <textarea name="comment" rows="4" cols="30">
-                    </textarea>
+                    <textarea name="comment" rows="4" cols="30"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Сервисный номер
+                </td>
+                <td>
+                    <input type="text" name="service_number" />
                 </td>
             </tr>
 

@@ -4,7 +4,10 @@
   <persistence-unit name="persUnit">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>base.entities.ClaimsEntity</class>
-    <properties>
+      <class>base.entities.BuildingsEntity</class>
+      <class>base.entities.TownsEntity</class>
+      <class>base.entities.UnitsEntity</class>
+      <properties>
       <property name="hibernate.connection.url" value="jdbc:postgresql://localhost/bids"/>
       <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
       <property name="hibernate.connection.username" value="joe"/>
@@ -13,11 +16,17 @@
   </persistence-unit>
     <persistence-unit name="authPU">
         <class>base.entities.UsersEntity</class>
+        <class>base.entities.BuildingsEntity</class>
+        <class>base.entities.ClaimsEntity</class>
+        <class>base.entities.TownsEntity</class>
+        <class>base.entities.UnitsEntity</class>
+        <class>base.entities.PrioritiesEntity</class>
+        <class>base.entities.StatusesEntity</class>
         <properties>
-            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost/bids_auth"/>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost/bids"/>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
-            <property name="hibernate.connection.username" value="bids_admin"/>
-            <property name="hibernate.connection.password" value="11111"/>
+            <property name="hibernate.connection.username" value="joe"/>
+            <property name="hibernate.connection.password" value="lapass"/>
         </properties>
     </persistence-unit>
 </persistence>

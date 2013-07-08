@@ -12,18 +12,182 @@ import java.util.Date;
 @Entity
 public class ClaimsEntity {
     private int id;
+    private String creatorLogin;
     private String name;
-    private String userName;
+    private String middleName;
+    private String surname;
     private String telephone;
+    private BuildingsEntity building;
+    private UnitsEntity unit;
     private String room;
-    private String priority;
-    private String comment;
-    private String buildingsList;
     private String deviceType;
     private String deviceNumber;
     private String problemDescription;
+    private PrioritiesEntity priority;
+    private String comment;
+    private String serviceNumber;
     private Date date;
-    private String status;
+    private StatusesEntity status;
+
+    @Column(name = "creator_login")
+    @Basic
+    public String getCreatorLogin() {
+        return creatorLogin;
+    }
+
+    public void setCreatorLogin(String creatorLogin) {
+        this.creatorLogin = creatorLogin;
+    }
+
+    @Column(name = "name")
+    @Basic
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Column(name = "middle_name")
+    @Basic
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    @Column(name = "surname")
+    @Basic
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    @Column(name = "telephone")
+    @Basic
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    @JoinColumn(name = "building")
+    @ManyToOne(targetEntity = BuildingsEntity.class)
+    public BuildingsEntity getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(BuildingsEntity building) {
+        this.building = building;
+    }
+
+    @JoinColumn(name = "unit")
+    @ManyToOne(targetEntity = UnitsEntity.class)
+    public UnitsEntity getUnit() {
+        return unit;
+    }
+
+    public void setUnit(UnitsEntity unit) {
+        this.unit = unit;
+    }
+
+    @Column(name = "room")
+    @Basic
+    public String getRoom() {
+        return room;
+    }
+
+    public void setRoom(String room) {
+        this.room = room;
+    }
+
+    @Column(name = "device_type")
+    @Basic
+    public String getDeviceType() {
+        return deviceType;
+    }
+
+    public void setDeviceType(String deviceType) {
+        this.deviceType = deviceType;
+    }
+
+    @Column(name = "device_number")
+    @Basic
+    public String getDeviceNumber() {
+        return deviceNumber;
+    }
+
+    public void setDeviceNumber(String deviceNumber) {
+        this.deviceNumber = deviceNumber;
+    }
+
+    @Column(name = "problem_description")
+    @Basic
+    public String getProblemDescription() {
+        return problemDescription;
+    }
+
+    public void setProblemDescription(String problemDescription) {
+        this.problemDescription = problemDescription;
+    }
+
+    @JoinColumn(name = "priority")
+    @ManyToOne(targetEntity = PrioritiesEntity.class)
+    public PrioritiesEntity getPriority() {
+        return priority;
+    }
+
+    public void setPriority(PrioritiesEntity priority) {
+        this.priority = priority;
+    }
+
+    @Column(name = "comment")
+    @Basic
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    @Column(name = "service_number")
+    @Basic
+    public String getServiceNumber() {
+        return serviceNumber;
+    }
+
+    public void setServiceNumber(String serviceNumber) {
+        this.serviceNumber = serviceNumber;
+    }
+
+    @Column(name = "date")
+    @Basic
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    @JoinColumn(name = "status")
+    @ManyToOne(targetEntity = StatusesEntity.class)
+    public StatusesEntity getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusesEntity status) {
+        this.status = status;
+    }
 
     @Column(name = "id")
     @SequenceGenerator(name="claims_id_seq",
@@ -40,120 +204,6 @@ public class ClaimsEntity {
         this.id = id;
     }
 
-    @Column(name = "name")
-    @Basic
-    public String getName() {
-        if(name==null)
-            return "(пусто)";
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Column(name = "user_name")
-    @Basic
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    @Column(name = "telephone")
-    @Basic
-    public String getTelephone() {
-        if(telephone==null)
-            return "(пусто)";
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
-    @Column(name = "buildings_list")
-    @Basic
-    public String getBuildingsList() {
-        return buildingsList;
-    }
-
-    public void setBuildingsList(String buildingsList) {
-        this.buildingsList = buildingsList;
-    }
-
-    @Column(name = "room")
-    @Basic
-    public String getRoom() {
-        if(room==null)
-            return "(пусто)";
-        return room;
-    }
-
-    public void setRoom(String room) {
-        this.room = room;
-    }
-
-    @Column(name = "device_type")
-    @Basic
-    public String getDeviceType() {
-        if(deviceType==null)
-            return "(пусто)";
-        return deviceType;
-    }
-
-    public void setDeviceType(String deviceType) {
-        this.deviceType = deviceType;
-    }
-
-    @Column(name = "device_number")
-    @Basic
-    public String getDeviceNumber() {
-        if(deviceNumber==null)
-            return "(пусто)";
-        return deviceNumber;
-    }
-
-    public void setDeviceNumber(String deviceNumber) {
-        this.deviceNumber = deviceNumber;
-    }
-    
-    @Column(name = "problem_description")
-    @Basic
-    public String getProblemDescription() {
-        if(problemDescription==null)
-            return "(пусто)";
-        return problemDescription;
-    }
-
-    public void setProblemDescription(String problemDescription) {
-        this.problemDescription = problemDescription;
-    }
-
-    @Column(name = "priority")
-    @Basic
-    public String getPriority() {
-        return priority;
-    }
-
-    public void setPriority(String priority) {
-        this.priority = priority;
-    }
-
-    @Column(name = "comment")
-    @Basic
-    public String getComment() {
-        if(comment==null)
-            return "(пусто)";
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -162,7 +212,22 @@ public class ClaimsEntity {
         ClaimsEntity that = (ClaimsEntity) o;
 
         if (id != that.id) return false;
+        if (comment != null ? !comment.equals(that.comment) : that.comment != null) return false;
+        if (creatorLogin != null ? !creatorLogin.equals(that.creatorLogin) : that.creatorLogin != null) return false;
+        if (date != null ? !date.equals(that.date) : that.date != null) return false;
+        if (deviceNumber != null ? !deviceNumber.equals(that.deviceNumber) : that.deviceNumber != null) return false;
+        if (deviceType != null ? !deviceType.equals(that.deviceType) : that.deviceType != null) return false;
+        if (middleName != null ? !middleName.equals(that.middleName) : that.middleName != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (priority != null ? !priority.equals(that.priority) : that.priority != null) return false;
+        if (problemDescription != null ? !problemDescription.equals(that.problemDescription) : that.problemDescription != null)
+            return false;
+        if (room != null ? !room.equals(that.room) : that.room != null) return false;
+        if (serviceNumber != null ? !serviceNumber.equals(that.serviceNumber) : that.serviceNumber != null)
+            return false;
+        if (status != null ? !status.equals(that.status) : that.status != null) return false;
+        if (surname != null ? !surname.equals(that.surname) : that.surname != null) return false;
+        if (telephone != null ? !telephone.equals(that.telephone) : that.telephone != null) return false;
 
         return true;
     }
@@ -170,33 +235,20 @@ public class ClaimsEntity {
     @Override
     public int hashCode() {
         int result = id;
+        result = 31 * result + (creatorLogin != null ? creatorLogin.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (middleName != null ? middleName.hashCode() : 0);
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + (telephone != null ? telephone.hashCode() : 0);
+        result = 31 * result + (room != null ? room.hashCode() : 0);
+        result = 31 * result + (deviceType != null ? deviceType.hashCode() : 0);
+        result = 31 * result + (deviceNumber != null ? deviceNumber.hashCode() : 0);
+        result = 31 * result + (problemDescription != null ? problemDescription.hashCode() : 0);
+        result = 31 * result + (priority != null ? priority.hashCode() : 0);
+        result = 31 * result + (comment != null ? comment.hashCode() : 0);
+        result = 31 * result + (serviceNumber != null ? serviceNumber.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "{" + new Integer(id) + ":" + name + "}";
-    }
-
-
-    @Column(name = "date")
-    @Basic
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    @Column(name = "status")
-    @Basic
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 }

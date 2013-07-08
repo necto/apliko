@@ -13,29 +13,54 @@
             <tbody>
                 <tr>
                     <td>
-                        ФИО подавшего заявку:
+                        Порядковый номер заявки:
                     </td>
-                    <td><%=claim.getName()%></td>
+                    <td><%=claim.getId()%></td>
                 </tr>
                 <tr>
                     <td>
-                        Контактный телефон
+                        ФИО подавшего заявку:
+                    </td>
+                    <td><%=claim.getName() + " " +
+                           claim.getMiddleName() + " " +
+                           claim.getSurname()%></td>
+                </tr>
+                <tr>
+                    <td>
+                        Контактный телефон:
                     </td>
                     <td>
                         <%=claim.getTelephone()%>
                     </td>
                 </tr>
+
                 <tr>
                     <td>
-                        Корпус
+                        Городок:
                     </td>
                     <td>
-                        <%=claim.getBuildingsList()%>
+                        <%=claim.getBuilding().getTown().getName()%>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Кабинет
+                        Корпус:
+                    </td>
+                    <td>
+                        <%=claim.getBuilding().getName()%>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Подразделение:
+                    </td>
+                    <td>
+                        <%=claim.getUnit().getName()%>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Кабинет:
                     </td>
                     <td>
                         <%=claim.getRoom()%>
@@ -43,7 +68,7 @@
                 </tr>
                 <tr>
                     <td>
-                        Тип и модель оборудования
+                        Тип и модель оборудования:
                     </td>
                     <td>
                         <%=claim.getDeviceType()%>
@@ -51,7 +76,7 @@
                 </tr>
                 <tr>
                     <td>
-                        Сервисный номер оборудования
+                        Сервисный номер оборудования:
                     </td>
                     <td>
                         <%=claim.getDeviceNumber()%>
@@ -59,7 +84,7 @@
                 </tr>
                 <tr>
                     <td>
-                        Описание проблемы
+                        Описание проблемы:
                     </td>
                     <td>
                         <%=claim.getProblemDescription()%>
@@ -67,23 +92,15 @@
                 </tr>
                 <tr>
                     <td>
-                        Приоритет
+                        Приоритет:
                     </td>
                     <td>
-                        <%=claim.getPriority()%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Дата подачи заявки:
-                    </td>
-                    <td>
-                        <%=claim.getDate()%>
+                        <%=claim.getPriority().getName()%>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Дополнительный комментарий
+                        Дополнительный комментарий:
                     </td>
                     <td>
                         <%=claim.getComment()%>
@@ -91,10 +108,26 @@
                 </tr>
                 <tr>
                     <td>
+                        Сервисный номер:
+                    </td>
+                    <td>
+                        <%=claim.getServiceNumber()%>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Дата добавления:
+                    </td>
+                    <td>
+                        <%=claim.getDate()%>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         Статус:
                     </td>
                     <td>
-                        <%=claim.getStatus()%>
+                        <%=claim.getStatus().getName()%>
                     </td>
                 </tr>
             </tbody>

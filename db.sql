@@ -1,8 +1,3 @@
-
--- add password autentification to joe, bids_admin, tomcat_auth in pg_hba.conf :
--- sudo emacs /etc/postgresql/9.1/main/pg_hba.conf
--- sudo service postgresql restart
-
 drop database bids_auth;
 drop database bids;
 
@@ -21,21 +16,64 @@ grant all privileges on database bids to joe;
 \c bids
 set role joe;
 
+create table towns (
+       id                   serial primary key,
+       name                 text UNIQUE
+);
+
+create table buildings (
+       id                   serial primary key,
+       town                 integer references towns,
+       name                 text
+);
+
+create table units (
+       id                   serial primary key,
+       name                 text UNIQUE
+);
+
+create table priorities (
+       id                   serial primary key,
+       name                 text
+);
+
+create table statuses (
+       id                   serial primary key,
+       name                 text
+);
+
 create table claims (
        id                   serial primary key,
-       user_name            text,
+       creator_login        text,
        name                 text,
-       buildings_list       text,
+       middle_name          text,
+       surname              text,
+       telephone            text,
+       building             integer references buildings,
+       unit                 integer references units,
        room                 text,
        device_type          text,
        device_number        text,
        problem_description  text,
-       priority             text,
+       priority             integer references priorities,
        comment              text,
-       telephone            text,
+       service_number       text,
        date                 date,
-       status               text
+       status               integer references statuses
 );
+
+insert into priorities values (DEFAULT, 'Высокий');
+insert into priorities values (DEFAULT, 'Средний');
+insert into priorities values (DEFAULT, 'Низкий');
+
+insert into statuses values (DEFAULT, 'Не обработана');
+insert into statuses values (DEFAULT, 'В обработке');
+insert into statuses values (DEFAULT, 'Выполнена');
+insert into statuses values (DEFAULT, 'Отложена');
+insert into statuses values (DEFAULT, 'Не возможно выполнить');
+insert into statuses values (DEFAULT, 'Отклонена');
+insert into statuses values (DEFAULT, 'Требуются уточнения');
+
 
 ---------------------------
 -- Authentication base
