@@ -11,6 +11,6 @@
             throw new RuntimeException( "User can't delete himself!");
         DataBase.deleteUser(names);
     %>
-    <a href="manage.jsp"> back</a>
+    <a href="list-users.jsp"> back</a>
 </stripes:layout-component>
 </stripes:layout-render>

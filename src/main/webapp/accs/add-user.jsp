@@ -2,11 +2,69 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <stripes:layout-render name="/layout/default.jsp">
-<stripes:layout-component name="title"> User is added </stripes:layout-component>
-<stripes:layout-component name="content">
-    <%
-        DataBase.addUser( request.getParameterMap());
-    %>
-    <a href="manage.jsp"> back</a>
-</stripes:layout-component>
+    <stripes:layout-component name="title"> Add a new user </stripes:layout-component>
+    <stripes:layout-component name="content">
+
+        <h3> Добавить нового пользователя.</h3>
+
+        <form action="accept-user.jsp" method="post">
+            <table class="form" border="1">
+                <tbody>
+                <tr>
+                    <td>Ник пользователя:</td>
+                    <td><input type="text" name="user_name" value=""/></td>
+                </tr>
+                <tr>
+                    <td>Пароль:</td>
+                    <td><input type="text" name="user_pass" value=""/></td>
+                </tr>
+                <tr>
+                    <td>
+                        Роль:
+                    </td>
+                    <td><input type="radio" name="user-role" value="manager"/> Manager
+                        <input type="radio" name="user-role" value="customer" checked/> Customer
+                        <input type="radio" name="user-role" value="performer" checked/> Performer
+                    </td>
+                </tr>
+                <tr>
+                    <td>Имя:</td>
+                    <td><input type="text" name="name"/></td>
+                </tr>
+                <tr>
+                    <td>Фамилия:</td>
+                    <td><input type="text" name="surname"/></td>
+                </tr>
+                <tr>
+                    <td>Отчество:</td>
+                    <td><input type="text" name="middle_name"/></td>
+                </tr>
+                <tr>
+                    <td>Корпус:</td>
+                    <td>
+                        <select name="buildings_list">
+                            <option>Учебный корпус №1</option>
+                            <option>Учебный корпус №2</option>
+                            <option>Учебный корпус №3</option>
+                            <option>Учебный корпус №4</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Unit:</td>
+                    <td><input type="text" name="unit"/></td>
+                </tr>
+                <tr>
+                    <td>Телефон:</td>
+                    <td><input type="text" name="telephone"/></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <input type="submit"/>
+        </form>
+    </stripes:layout-component>
 </stripes:layout-render>
+
+
+
