@@ -36,7 +36,7 @@
                     <td><%=user.getBuilding()%></td>
                 </tr>
                 <tr>
-                    <td>Unit:</td>
+                    <td>Подразделение:</td>
                     <td><%=user.getUnit()%></td>
                 </tr>
                 <tr>

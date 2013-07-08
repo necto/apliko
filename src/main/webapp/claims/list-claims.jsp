@@ -112,7 +112,7 @@
                 out.print("<td>" + link);
                 out.print(claim.getTelephone());
                 out.print("</a></td><td>" + link);
-                out.print(claim.getStatus());
+                out.print(claim.getStatus().getName());
                 out.println("</a>");
                 out.println("</td></tr>");
             }

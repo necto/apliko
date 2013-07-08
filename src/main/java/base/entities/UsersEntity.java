@@ -4,11 +4,9 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
  * User: estet
  * Date: 7/3/13
  * Time: 5:52 PM
- * To change this template use File | Settings | File Templates.
  */
 @Table(name = "users", schema = "public", catalog = "bids_auth")
 @Entity
