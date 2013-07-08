@@ -105,13 +105,13 @@
             for (ClaimsEntity claim : claims) {
                 String link = "<a href=\"view-claim.jsp?id=" + claim.getId() + "\">";
                 out.print("<tr>");
-                out.print("<th>" + link);
+                out.print("<td>" + link);
                 out.print(claim.getName());
-                out.print("</a></th><th>" + link);
+                out.print("</a></td><td>" + link);
                 out.print(claim.getTelephone());
-                out.print("</a></th><th>" + link);
+                out.print("</a></td><td>" + link);
                 out.print(claim.getStatus());
-                out.println("</a></th></tr>");
+                out.println("</a></td></tr>");
             }
         %>
     </table>
