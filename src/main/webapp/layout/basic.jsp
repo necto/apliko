@@ -6,6 +6,9 @@
     <head>
         <link rel="stylesheet" type="text/css"
               href="<%=request.getContextPath()%>/static/style.css"/>
+        <script type="text/javascript"
+                src="<%=request.getContextPath()%>/static/common.js">
+        </script>
         <title><stripes:layout-component name="title"/></title>
     </head>
     <body>

@@ -92,7 +92,8 @@
     %>
     <table>
         <tr>
-            <th>Name</th>
+            <th>Name <a onclick='follow(insertParam("sort-dir", "desc", insertParam("sort", "name")))'> &uarr;</a>
+                     <a onclick='follow(insertParam("sort-dir", "asc", insertParam("sort", "name")))'>&darr;</a></th>
             <th>Phone</th>
             <th>Status</th>
         </tr>
