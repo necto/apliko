@@ -10,6 +10,10 @@
     padding: 0;
 }
 
+ul {
+    margin-left: 30;
+}
+
 body {
     font-family: Verdana, Arial, sans-serif;
     font-size: smaller;
@@ -256,4 +260,12 @@ table tr:hover td {
 .sorting-focus {
     text-decoration: underline;
     display: inline;
+}
+
+form {
+    margin-bottom: 0;
+}
+
+.delForm {
+    display:inline;
 }

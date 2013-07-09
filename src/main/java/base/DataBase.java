@@ -10,10 +10,22 @@ import javax.persistence.Persistence;
 import java.util.*;
 
 public class DataBase {
-    public static void deleteUser( String [] names)
+
+    private static EntityManager getAuthEM()
     {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("authPU");
-        EntityManager em = emf.createEntityManager();
+        return emf.createEntityManager();
+    }
+
+    private static EntityManager getClaimsEM()
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
+        return emf.createEntityManager();
+    }
+
+    public static void deleteUser( String [] names)
+    {
+        EntityManager em = getAuthEM();
         em.getTransaction().begin();
         for ( String name : names)
         {
@@ -24,8 +36,7 @@ public class DataBase {
     }
     public static void addUser( Map<String,String[]> parameters)
     {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("authPU");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = getAuthEM();
         em.getTransaction().begin();
         UsersEntity user = new UsersEntity();
         user.setUserName(parameters.get("user_name")[0]);
@@ -49,8 +60,7 @@ public class DataBase {
 
     public static void addClaim( Map<String, String[]> params, String user)
     {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = getClaimsEM();
         em.getTransaction().begin();
         ClaimsEntity clm = new ClaimsEntity();
         clm.setCreatorLogin(user);
@@ -89,8 +99,7 @@ public class DataBase {
 
     public static List<UsersEntity> listUsers(Map<String, String[]> params)
     {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("authPU");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = getAuthEM();
         List<UsersEntity> ret =  em.createQuery("select u from UsersEntity u " +
                 new FilterGenerator(params).variable("u").generate() +
                 new SortingGenerator(params).variable("u").generate()).getResultList();
@@ -99,8 +108,7 @@ public class DataBase {
 
     public static List<ClaimsEntity> listClaims(Map<String, String[]> params)
     {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = getClaimsEM();
         return em.createQuery("select m from ClaimsEntity m " +
                                new FilterGenerator(params).variable("m").generate() +
                                new SortingGenerator(params).variable("m").generate()).getResultList();
@@ -108,30 +116,26 @@ public class DataBase {
 
     public static ClaimsEntity getClaim( Integer id)
     {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = getClaimsEM();
         return em.find(ClaimsEntity.class, id);
     }
 
     public static UsersEntity getUser( String userName)
     {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("authPU");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = getAuthEM();
         UsersEntity user = em.find(UsersEntity.class, userName);
         return user;
     }
 
     public static List<TownsEntity> listTowns()
     {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = getClaimsEM();
         return em.createQuery("select t from TownsEntity t").getResultList();
     }
 
     public static void addTown( String name)
     {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = getClaimsEM();
 
         em.getTransaction().begin();
         TownsEntity town = new TownsEntity();
@@ -140,10 +144,25 @@ public class DataBase {
         em.getTransaction().commit();
     }
 
+    public static void deleteTown( Integer id)
+    {
+        EntityManager em = getClaimsEM();
+
+        em.getTransaction().begin();
+        TownsEntity town = em.find(TownsEntity.class, id);
+        for (BuildingsEntity building: town.getBuildings())
+        {
+            for (ClaimsEntity claim: building.getClaims())
+                em.remove(claim);
+            em.remove(building);
+        }
+        em.remove(town);
+        em.getTransaction().commit();
+    }
+
     public static void addBuildings( String[] names, String town_name)
     {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = getClaimsEM();
 
         em.getTransaction().begin();
         TownsEntity town = (TownsEntity)em.createQuery("select t from TownsEntity t where t.name = '" +
@@ -159,10 +178,21 @@ public class DataBase {
         em.getTransaction().commit();
     }
 
+    public static void deleteBuilding( Integer id)
+    {
+        EntityManager em = getClaimsEM();
+
+        em.getTransaction().begin();
+        BuildingsEntity building = em.find(BuildingsEntity.class, id);
+        for ( ClaimsEntity claim : building.getClaims())
+            em.remove(claim);
+        em.remove(building);
+        em.getTransaction().commit();
+    }
+
     public static void addUnit( String name)
     {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = getClaimsEM();
 
         em.getTransaction().begin();
         UnitsEntity unit = new UnitsEntity();
@@ -171,17 +201,27 @@ public class DataBase {
         em.getTransaction().commit();
     }
 
+    public static void deleteUnit( Integer id)
+    {
+        EntityManager em = getClaimsEM();
+
+        em.getTransaction().begin();
+        UnitsEntity unit = em.find(UnitsEntity.class, id);
+        for (ClaimsEntity claim : unit.getClaims())
+            em.remove(claim);
+        em.remove(unit);
+        em.getTransaction().commit();
+    }
+
     public static List<UnitsEntity> listUnits()
     {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = getClaimsEM();
         return em.createQuery("select u from UnitsEntity u").getResultList();
     }
 
     public static List<PrioritiesEntity> listPriorities()
     {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = getClaimsEM();
         return em.createQuery("select p from PrioritiesEntity p").getResultList();
     }
 }

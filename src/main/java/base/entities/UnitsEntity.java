@@ -1,6 +1,7 @@
 package base.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * User: estet
@@ -12,6 +13,18 @@ import javax.persistence.*;
 public class UnitsEntity {
     private int id;
     private String name;
+    private List<ClaimsEntity> claims;
+
+    @OneToMany
+    @JoinColumn(name="unit")
+    public List<ClaimsEntity> getClaims() {
+        return claims;
+    }
+
+    public void setClaims(List<ClaimsEntity> claims) {
+        this.claims = claims;
+    }
+
 
     @Column(name = "id")
     @SequenceGenerator(name="units_id_seq",
