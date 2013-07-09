@@ -9,7 +9,7 @@
         String [] names = request.getParameterValues("user");
         if (Arrays.asList(names).contains(request.getUserPrincipal().getName()) )
             throw new RuntimeException( "User can't delete himself!");
-        DataBase.deleteUser(names);
+        DataBase.deleteUsers(names);
     %>
     <a href="list-users.jsp"> back</a>
 </stripes:layout-component>

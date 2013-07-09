@@ -9,6 +9,7 @@
       <class>base.entities.UnitsEntity</class>
       <class>base.entities.PrioritiesEntity</class>
       <class>base.entities.StatusesEntity</class>
+      <class>base.entities.UserinfoEntity</class>
       <properties>
       <property name="hibernate.connection.url" value="jdbc:postgresql://localhost/bids"/>
       <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>

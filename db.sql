@@ -62,6 +62,16 @@ create table claims (
        status               integer references statuses
 );
 
+create table userinfo (
+  user_name         text not null primary key,
+  name              text,
+  surname           text,
+  middle_name       text,
+  building          integer references buildings,
+  unit              integer references units,
+  telephone         text
+);
+
 insert into priorities values (DEFAULT, 'Высокий');
 insert into priorities values (DEFAULT, 'Средний');
 insert into priorities values (DEFAULT, 'Низкий');
@@ -91,13 +101,7 @@ set role bids_admin;
 
 create table users (
   user_name         text not null primary key,
-  user_pass         text not null,
-  name              text,
-  surname           text,
-  middle_name       text,
-  building          text,
-  unit              text,
-  telephone         text
+  user_pass         text not null
 );
 
 create table user_roles (

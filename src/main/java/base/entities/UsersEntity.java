@@ -14,12 +14,6 @@ public class UsersEntity {
     private String userName;
     private String userPass;
     private List<String> roles;
-    private String name;
-    private String surname;
-    private String middleName;
-    private String building;
-    private String unit;
-    private String telephone;
 
     @Column(name = "user_name")
     @Id
@@ -75,77 +69,5 @@ public class UsersEntity {
 
     public void setRoles(List<String> roles) {
         this.roles = roles;
-    }
-
-    @Column(name = "name")
-    @Basic
-    public String getName() {
-        if(name==null)
-            return "(пусто)";
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Column(name = "surname")
-    @Basic
-    public String getSurname() {
-        if(surname==null)
-            return "(пусто)";
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    @Column(name = "middle_name")
-    @Basic
-    public String getMiddleName() {
-        if(middleName==null)
-            return "(пусто)";
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
-    @Column(name = "building")
-    @Basic
-    public String getBuilding() {
-        if(building==null)
-            return "(пусто)";
-        return building;
-    }
-
-    public void setBuilding(String building) {
-        this.building = building;
-    }
-
-    @Column(name = "unit")
-    @Basic
-    public String getUnit() {
-        if(unit==null)
-            return "(пусто)";
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-
-    @Column(name = "telephone")
-    @Basic
-    public String getTelephone() {
-        if(telephone==null)
-            return "(пусто)";
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
     }
 }

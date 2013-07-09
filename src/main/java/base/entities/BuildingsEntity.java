@@ -15,6 +15,18 @@ public class BuildingsEntity {
     private String name;
     private TownsEntity town;
     private List<ClaimsEntity> claims;
+    private List<UserinfoEntity> users;
+
+    @OneToMany
+    @JoinColumn(name="building")
+    public List<UserinfoEntity> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<UserinfoEntity> users) {
+        this.users = users;
+    }
+
 
     @OneToMany
     @JoinColumn(name="building")

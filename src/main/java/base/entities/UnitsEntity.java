@@ -14,6 +14,17 @@ public class UnitsEntity {
     private int id;
     private String name;
     private List<ClaimsEntity> claims;
+    private List<UserinfoEntity> users;
+
+    @OneToMany
+    @JoinColumn(name="building")
+    public List<UserinfoEntity> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<UserinfoEntity> users) {
+        this.users = users;
+    }
 
     @OneToMany
     @JoinColumn(name="unit")

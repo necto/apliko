@@ -1,5 +1,6 @@
 <%@ page import="base.DataBase" %>
 <%@ page import="base.entities.*" %>
+<%@ page import="util.HtmlGenerator" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <stripes:layout-render name="/layout/default.jsp">
@@ -40,19 +41,9 @@
             <tr>
                 <td>Корпус (связан с городком)</td>
                 <td>
-                    <select name="building">
-                        <%
-                            for ( TownsEntity town : DataBase.listTowns())
-                            {
-                                out.println("<option disabled>" + town.getName() + "</option>");
-                                for (BuildingsEntity building : town.getBuildings())
-                                {
-                                    out.println("<option value=\"" + building.getId() +
-                                            "\">" + building.getName() + "</option>");
-                                }
-                            }
-                        %>
-                    </select>
+                    <%=
+                        HtmlGenerator.generateBuildingSelectList(sample.getBuilding())
+                    %>
                 </td>
             </tr>
             <tr>
@@ -60,15 +51,7 @@
                     Подразделение
                 </td>
                 <td>
-                    <select name="unit">
-                        <%
-                            for (UnitsEntity unit: DataBase.listUnits())
-                            {
-                                out.println("<option value=\"" + unit.getId() +
-                                        "\">" + unit.getName() + "</option>");
-                            }
-                        %>
-                    </select>
+                    <%= HtmlGenerator.generateUnitSelectList(sample.getUnit())%>
                 </td>
             </tr>
             <tr>

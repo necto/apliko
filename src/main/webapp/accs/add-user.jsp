@@ -1,4 +1,5 @@
 <%@ page import="base.DataBase" %>
+<%@ page import="util.HtmlGenerator" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <stripes:layout-render name="/layout/default.jsp">
@@ -42,17 +43,14 @@
                 <tr>
                     <td>Корпус:</td>
                     <td>
-                        <select name="buildings_list">
-                            <option>Учебный корпус №1</option>
-                            <option>Учебный корпус №2</option>
-                            <option>Учебный корпус №3</option>
-                            <option>Учебный корпус №4</option>
-                        </select>
+                        <%=
+                            HtmlGenerator.generateBuildingSelectList(null)
+                        %>
                     </td>
                 </tr>
                 <tr>
                     <td>Unit:</td>
-                    <td><input type="text" name="unit"/></td>
+                    <td><%= HtmlGenerator.generateUnitSelectList(null)%></td>
                 </tr>
                 <tr>
                     <td>Телефон:</td>

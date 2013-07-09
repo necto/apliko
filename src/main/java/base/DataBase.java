@@ -23,21 +23,29 @@ public class DataBase {
         return emf.createEntityManager();
     }
 
-    public static void deleteUser( String [] names)
+    public static void deleteUsers(String[] names)
     {
         EntityManager em = getAuthEM();
+        EntityManager iem = getClaimsEM();
         em.getTransaction().begin();
+        iem.getTransaction().begin();
         for ( String name : names)
         {
             UsersEntity user = em.find(UsersEntity.class, name);
             em.remove(user);
+            UserinfoEntity uinfo = iem.find(UserinfoEntity.class, name);
+            if ( uinfo != null)
+                iem.remove(uinfo);
         }
         em.getTransaction().commit();
+        iem.getTransaction().commit();
     }
     public static void addUser( Map<String,String[]> parameters)
     {
         EntityManager em = getAuthEM();
+        EntityManager infoEm = getClaimsEM();
         em.getTransaction().begin();
+        infoEm.getTransaction().begin();
         UsersEntity user = new UsersEntity();
         user.setUserName(parameters.get("user_name")[0]);
         user.setUserPass(parameters.get("user_pass")[0]);
@@ -46,16 +54,22 @@ public class DataBase {
         roles.add(parameters.get("user-role")[0]);
 
         user.setRoles(roles);
-        user.setName(parameters.get("name")[0]);
-        user.setSurname(parameters.get("surname")[0]);
-        user.setMiddleName("middle_name");
-        user.setBuilding("buildings_list");
-        user.setUnit("unit");
-        user.setTelephone("telephone");
+
+        UserinfoEntity uinfo = new UserinfoEntity();
+
+        uinfo.setUserName(parameters.get("user_name")[0]);
+        uinfo.setName(parameters.get("name")[0]);
+        uinfo.setSurname(parameters.get("surname")[0]);
+        uinfo.setMiddleName(parameters.get("middle_name")[0]);
+        uinfo.setBuilding(infoEm.find(BuildingsEntity.class, Integer.parseInt(parameters.get("building")[0])));
+        uinfo.setUnit(infoEm.find(UnitsEntity.class, Integer.parseInt(parameters.get("unit")[0])));
+        uinfo.setTelephone(parameters.get("telephone")[0]);
 
         
         em.persist(user);
+        infoEm.persist(uinfo);
         em.getTransaction().commit();
+        infoEm.getTransaction().commit();
     }
 
     public static void addClaim( Map<String, String[]> params, String user)
@@ -88,16 +102,20 @@ public class DataBase {
 
     public static ClaimsEntity generateClaimByUser( String userName)
     {
-        EntityManager em = getAuthEM();
-        UsersEntity user = em.find(UsersEntity.class, userName);
+        EntityManager em = getClaimsEM();
+        UserinfoEntity user = em.find(UserinfoEntity.class, userName);
 
         ClaimsEntity ret = new ClaimsEntity();
-        ret.setName(user.getName());
-        ret.setMiddleName(user.getMiddleName());
-        ret.setSurname(user.getSurname());
-        ret.setTelephone(user.getTelephone());
-
-        /* TODO: other fields: unit, building, room, ... */
+        if ( user != null)
+        {
+            ret.setName(user.getName());
+            ret.setMiddleName(user.getMiddleName());
+            ret.setSurname(user.getSurname());
+            ret.setTelephone(user.getTelephone());
+            ret.setUnit(user.getUnit());
+            ret.setBuilding(user.getBuilding());
+            ret.setCreatorLogin(user.getUserName());
+        }
 
         return ret;
     }
@@ -136,12 +154,20 @@ public class DataBase {
         return em.find(ClaimsEntity.class, id);
     }
 
-    public static UsersEntity getUser( String userName)
+    public static UserinfoEntity getUserInfo( String userName)
+    {
+        EntityManager em = getClaimsEM();
+        UserinfoEntity user = em.find(UserinfoEntity.class, userName);
+        return user;
+    }
+
+    public static UsersEntity getUserAcc( String userName)
     {
         EntityManager em = getAuthEM();
         UsersEntity user = em.find(UsersEntity.class, userName);
         return user;
     }
+
 
     public static List<TownsEntity> listTowns()
     {
@@ -160,6 +186,17 @@ public class DataBase {
         em.getTransaction().commit();
     }
 
+    private static void detachBuilding( BuildingsEntity building, EntityManager em)
+    {
+        for (ClaimsEntity claim: building.getClaims())
+            em.remove(claim);
+        for (UserinfoEntity user : building.getUsers())
+        {
+            user.setBuilding(null);
+            em.persist(user);
+        }
+    }
+
     public static void deleteTown( Integer id)
     {
         EntityManager em = getClaimsEM();
@@ -168,8 +205,7 @@ public class DataBase {
         TownsEntity town = em.find(TownsEntity.class, id);
         for (BuildingsEntity building: town.getBuildings())
         {
-            for (ClaimsEntity claim: building.getClaims())
-                em.remove(claim);
+            detachBuilding( building, em);
             em.remove(building);
         }
         em.remove(town);
@@ -200,8 +236,7 @@ public class DataBase {
 
         em.getTransaction().begin();
         BuildingsEntity building = em.find(BuildingsEntity.class, id);
-        for ( ClaimsEntity claim : building.getClaims())
-            em.remove(claim);
+        detachBuilding(building, em);
         em.remove(building);
         em.getTransaction().commit();
     }
@@ -225,6 +260,11 @@ public class DataBase {
         UnitsEntity unit = em.find(UnitsEntity.class, id);
         for (ClaimsEntity claim : unit.getClaims())
             em.remove(claim);
+        for (UserinfoEntity user : unit.getUsers())
+        {
+            user.setUnit(null);
+            em.persist(user);
+        }
         em.remove(unit);
         em.getTransaction().commit();
     }
