@@ -86,6 +86,22 @@ public class DataBase {
         em.getTransaction().commit();
     }
 
+    public static ClaimsEntity generateClaimByUser( String userName)
+    {
+        EntityManager em = getAuthEM();
+        UsersEntity user = em.find(UsersEntity.class, userName);
+
+        ClaimsEntity ret = new ClaimsEntity();
+        ret.setName(user.getName());
+        ret.setMiddleName(user.getMiddleName());
+        ret.setSurname(user.getSurname());
+        ret.setTelephone(user.getTelephone());
+
+        /* TODO: other fields: unit, building, room, ... */
+
+        return ret;
+    }
+
     private static List<UsersEntity> keepOnlyRelevantUsers( List<UsersEntity> users)
     {
         List<UsersEntity> ret = new ArrayList<UsersEntity>(users.size());

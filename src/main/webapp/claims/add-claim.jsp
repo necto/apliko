@@ -1,42 +1,42 @@
 <%@ page import="base.DataBase" %>
-<%@ page import="base.entities.TownsEntity" %>
-<%@ page import="base.entities.BuildingsEntity" %>
-<%@ page import="base.entities.UnitsEntity" %>
-<%@ page import="base.entities.PrioritiesEntity" %>
+<%@ page import="base.entities.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <stripes:layout-render name="/layout/default.jsp">
 <stripes:layout-component name="title"> Add a new claim </stripes:layout-component>
 <stripes:layout-component name="content">
     <form action="accept-claim.jsp">
+        <%
+            ClaimsEntity sample = DataBase.generateClaimByUser(request.getUserPrincipal().getName());
+        %>
         <h3>Сведения для заявки:</h3>
         <table class="form" border="1" width="6">
             <tbody>
             <tr>
                 <td>Ваша фамилия</td>
                 <td>
-                    <input type="text" name="surname" />
+                    <input type="text" name="surname" value="<%=sample.getSurname()%>" />
                 </td>
             </tr>
             <tr>
                 <td>Ваше имя</td>
                 <td>
-                    <input type="text" name="name" />
+                    <input type="text" name="name" value="<%=sample.getName()%>" />
                 </td>
             </tr>
             <tr>
                 <td>Ваше отчество</td>
                 <td>
-                    <input type="text" name="middle_name" />
+                    <input type="text" name="middle_name" value="<%=sample.getMiddleName()%>" />
                 </td>
             </tr>
             <tr>
                 <td>Контактный телефон</td>
                 <td>
-                    <input type="text" name="telephone" />
+                    <input type="text" name="telephone" value="<%=sample.getTelephone()%>" />
                 </td>
             </tr>
-            <!-- Town? -->
+            <!-- TODO: other fields, see Database.generateclaimbyuser -->
             <tr>
                 <td>Корпус (связан с городком)</td>
                 <td>
