@@ -34,12 +34,14 @@ create table units (
 
 create table priorities (
        id                   serial primary key,
-       name                 text
+       name                 text,
+       color                text
 );
 
 create table statuses (
        id                   serial primary key,
-       name                 text
+       name                 text,
+       color                text
 );
 
 create table claim_type (
@@ -83,17 +85,17 @@ create table userinfo (
   telephone         text
 );
 
-insert into priorities values (DEFAULT, 'Высокий');
-insert into priorities values (DEFAULT, 'Средний');
-insert into priorities values (DEFAULT, 'Низкий');
+insert into priorities values (DEFAULT, 'Высокий', 'red');
+insert into priorities values (DEFAULT, 'Средний', 'black');
+insert into priorities values (DEFAULT, 'Низкий',  'blue');
 
-insert into statuses values (DEFAULT, 'Не обработана');
-insert into statuses values (DEFAULT, 'В обработке');
-insert into statuses values (DEFAULT, 'Выполнена');
-insert into statuses values (DEFAULT, 'Отложена');
-insert into statuses values (DEFAULT, 'Не возможно выполнить');
-insert into statuses values (DEFAULT, 'Отклонена');
-insert into statuses values (DEFAULT, 'Требуются уточнения');
+insert into statuses values (DEFAULT, 'Не обработана', 'black');
+insert into statuses values (DEFAULT, 'В обработке', 'black');
+insert into statuses values (DEFAULT, 'Выполнена', 'green');
+insert into statuses values (DEFAULT, 'Отложена', 'blue');
+insert into statuses values (DEFAULT, 'Не возможно выполнить', 'red');
+insert into statuses values (DEFAULT, 'Отклонена', 'red');
+insert into statuses values (DEFAULT, 'Требуются уточнения', 'black');
 
 
 ---------------------------

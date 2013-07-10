@@ -50,3 +50,19 @@ function toggle(elementId)
     }
     return false;
 }
+
+function show(text, y)
+{
+    var wrapper = document.getElementById('hidden_descr');
+    var inner_text = document.getElementById('hidden_text');
+
+    wrapper.style.display = 'block';
+    inner_text.innerHTML = text;
+
+    wrapper.style.top = y+wrapper.clientHeight;
+}
+
+function hide()
+{
+    document.getElementById('hidden_descr').style.display = 'none';
+}

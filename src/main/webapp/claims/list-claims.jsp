@@ -82,30 +82,68 @@
         <%
             List<ClaimsEntity> claims = DataBase.listClaims(request.getParameterMap());
         %>
-        <table>
+        <table class="tickets_table">
             <tr>
                 <th><%=srt.makeColumnHeader("№", "id")%></th>
-                <th><%=srt.makeColumnHeader("Имя", "name")%></th>
-                <th><%=srt.makeColumnHeader("Телефон", "telephone")%></th>
+                <th><%=srt.makeColumnHeader("Автор заявки", "surname")%></th>
+                <th><%=srt.makeColumnHeader("Расположение оборудования", "unit")%></th>
+                <th><%=srt.makeColumnHeader("Оборудование", "deviceType")%></th>
+                <th><%=srt.makeColumnHeader("Сервисный номер", "deviceNumber")%></th>
+                <th><%=srt.makeColumnHeader("Номер заявки", "serviceNumber")%></th>
+                <th><%=srt.makeColumnHeader("Тип проблемы", "type")%></th>
+                <th><%=srt.makeColumnHeader("Описание проблемы", "problemDescription")%></th>
+                <th><%=srt.makeColumnHeader("Приоритет", "priority")%></th>
+                <th><%=srt.makeColumnHeader("Комментарий", "comment")%></th>
+                <th><%=srt.makeColumnHeader("Дата добавления", "date")/*TODO: update date*/%></th>
                 <th><%=srt.makeColumnHeader("Статус", "status")%></th>
             </tr>
             <%
                 for (ClaimsEntity claim : claims) {
-                    String link = "<a href=\"view-claim.jsp?id=" + claim.getId() + "\">";
-                    out.print("<tr>");
-                    out.print("<td><b>" + link);
-                    out.print(claim.getId());
-                    out.print("</a></b></td>");
-                    out.print("<td>");
-                    out.print(claim.getName());
-                    out.print("</td>");
-                    out.print("<td>");
-                    out.print(claim.getTelephone());
-                    out.print("</td><td>");
-                    out.print(claim.getStatus().getName());
-                    out.println("");
-                    out.println("</td></tr>");
-                }
+                    %>
+                    <tr class="tickets_table">
+                    <td><b> <a href="view-claim.jsp?id=<%=claim.getId()%>">
+                    <%=claim.getId()%>
+                    </a></b></td>
+                    <td>
+                    <%= claim.getName() + " " + claim.getMiddleName() + " " +
+                              claim.getSurname() + "<br/>(" + claim.getTelephone() + ")"%>
+                    </td>
+                    <td>
+                    <%= claim.townName() + ", " + claim.buildingName() + ", " +
+                              claim.unitName() + ", " + claim.getRoom()%>
+                    </td>
+                    <td>
+                    <%=claim.getDeviceType()%>
+                    </td>
+                    <td>
+                    <%=claim.getDeviceNumber()%>
+                    </td>
+                    <td>
+                    <%=claim.getServiceNumber()%>
+                    </td>"
+                    <td>
+                    <%=claim.typeName()%>
+                    </td>
+                    <td>
+                    <%=HtmlGenerator.abbreviatedText(claim.getProblemDescription())%>
+                    </td>
+                    <td>
+                        <font color="<%=claim.priorityColor()%>">
+                        <%=claim.priorityName()%>
+                        </font>
+                    </td>
+                    <td>
+                    <%=HtmlGenerator.abbreviatedText(claim.getComment())%>
+                    </td>
+                    <td>
+                    <%=claim.getDate()%>
+                    </td>
+                    <td>
+                        <font color="<%=claim.statusColor()%>"
+                        <%=claim.statusName()%>
+                        </font>
+                    </td></tr>
+              <%}
             %>
         </table>
     </div>

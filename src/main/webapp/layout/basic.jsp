@@ -13,6 +13,15 @@
     </head>
     <body>
 
+    <div align="center" class="wrapper">
+        <div id="hidden_descr" class="hidden" style="display:none;">
+            <div class="closebar" onclick="hide();">Щелкните, чтобы закрыть [X]</div>
+            <div id="hidden_text" style="margin:15px;">
+                &nbsp;
+            </div>
+        </div>
+    </div>
+
     <div id="top"><stripes:layout-component name="top"/></div>
 
     <div class="page-wrap" id="body">

@@ -175,6 +175,12 @@ public class ClaimsEntity {
         return "(пусто)";
     }
 
+    public String priorityColor() {
+        if ( priority != null)
+            return priority.getColor();
+        return "black";
+    }
+
     @Column(name = "comment")
     @Basic
     public String getComment() {
@@ -219,6 +225,12 @@ public class ClaimsEntity {
         if ( status != null)
             return status.getName();
         return "(пусто)";
+    }
+
+    public String statusColor() {
+        if ( status != null)
+            return status.getColor();
+        return "black";
     }
 
     @Column(name = "id")

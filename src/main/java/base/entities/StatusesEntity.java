@@ -7,13 +7,14 @@ import javax.persistence.*;
  * Date: 7/8/13
  * Time: 3:59 PM
  */
-@javax.persistence.Table(name = "statuses", schema = "public", catalog = "bids")
+@Table(name = "statuses", schema = "public", catalog = "bids")
 @Entity
 public class StatusesEntity {
     private int id;
     private String name;
+    private String color;
 
-    @javax.persistence.Column(name = "id")
+    @Column(name = "id")
     @SequenceGenerator(name="statuses_id_seq",
             sequenceName="statuses_id_seq",
             allocationSize=1)
@@ -28,7 +29,7 @@ public class StatusesEntity {
         this.id = id;
     }
 
-    @javax.persistence.Column(name = "name")
+    @Column(name = "name")
     @Basic
     public String getName() {
         return name;
@@ -56,5 +57,15 @@ public class StatusesEntity {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
+    }
+
+    @Column(name = "color")
+    @Basic
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }

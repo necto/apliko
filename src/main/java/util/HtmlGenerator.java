@@ -100,4 +100,17 @@ public class HtmlGenerator {
         }
         return ret;
     }
+
+    static public String abbreviatedText( String text)
+    {
+        if ( text == null) return text;
+        String ret = text;
+        if (text.length() > 20)
+        {
+            ret = text.substring(0, 17) + "...";
+            ret += "<br/>" + "<a class=\"showall\" onclick=\"show('";
+            ret += text + "', event.clientY);\"> Показать полностью</a>";
+        }
+        return ret;
+    }
 }
