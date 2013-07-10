@@ -67,10 +67,9 @@
     %>
     <table>
         <tr>
-            <th><%=srt.makeColumnHeader("Name", "name")%></th>
-            <th><%=srt.makeColumnHeader("Phone", "telephone")%></th>
-            <th><%=srt.makeColumnHeader("Status", "status")%></th>
-
+            <th><%=srt.makeColumnHeader("Имя", "name")%></th>
+            <th><%=srt.makeColumnHeader("Телефон", "telephone")%></th>
+            <th><%=srt.makeColumnHeader("Статус", "status")%></th>
         </tr>
         <%
             for (ClaimsEntity claim : claims) {

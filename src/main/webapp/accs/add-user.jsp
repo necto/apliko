@@ -7,7 +7,7 @@
 
         <h3> Добавить нового пользователя.</h3>
 
-        <form action="accept-user.jsp" method="post">
+        <form action="list-users.jsp" method="post">
             <table class="form" border="1">
                 <tbody>
                 <tr>
@@ -65,7 +65,7 @@
                 </tbody>
             </table>
 
-            <input type="submit"/>
+            <input type="submit" name="add-user"/>
         </form>
     </stripes:layout-component>
 </stripes:layout-render>
