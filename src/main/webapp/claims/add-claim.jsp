@@ -6,7 +6,7 @@
 <stripes:layout-render name="/layout/default.jsp">
 <stripes:layout-component name="title"> Add a new claim </stripes:layout-component>
 <stripes:layout-component name="content">
-    <form action="accept-claim.jsp">
+    <form action="accept-claim.jsp" method="post">
         <%
             ClaimsEntity sample = DataBase.generateClaimByUser(request.getUserPrincipal().getName());
         %>

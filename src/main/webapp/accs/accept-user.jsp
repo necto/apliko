@@ -7,6 +7,7 @@
     <%
         DataBase.addUser( request.getParameterMap());
     %>
+    Добавлен пользователь <%=request.getParameter("name")%>
     <a href="list-users.jsp"> back</a>
 </stripes:layout-component>
 </stripes:layout-render>

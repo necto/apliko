@@ -1,4 +1,3 @@
-<%@ page import="base.DataBase" %>
 <%@ page import="util.HtmlGenerator" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
@@ -17,15 +16,16 @@
                 </tr>
                 <tr>
                     <td>Пароль:</td>
-                    <td><input type="text" name="user_pass" value=""/></td>
+                    <td><input type="password" name="user_pass" value=""/></td>
                 </tr>
                 <tr>
                     <td>
                         Роль:
                     </td>
-                    <td><input type="radio" name="user-role" value="manager"/> Manager
-                        <input type="radio" name="user-role" value="customer" checked/> Customer
-                        <input type="radio" name="user-role" value="performer" checked/> Performer
+                    <td>
+                        <input type="radio" name="user-role" value="manager"/> Администратор<br/>
+                        <input type="radio" name="user-role" value="customer" checked/> Пользователь<br/>
+                        <input type="radio" name="user-role" value="performer"/> Сотрудник тех. поддержки
                     </td>
                 </tr>
                 <tr>
@@ -49,7 +49,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Unit:</td>
+                    <td>Подразделение:</td>
                     <td><%= HtmlGenerator.generateUnitSelectList(null)%></td>
                 </tr>
                 <tr>

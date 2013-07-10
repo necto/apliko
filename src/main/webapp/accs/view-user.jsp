@@ -23,6 +23,10 @@
                     <td><%=user.getName()%></td>
                 </tr>
                 <tr>
+                    <td>Отчество:</td>
+                    <td><%=user.getMiddleName()%></td>
+                </tr>
+                <tr>
                     <td>Фамилия:</td>
                     <td><%=user.getSurname()%></td>
                 </tr>
