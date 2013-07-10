@@ -43,14 +43,20 @@
                 <tr>
                     <td>Корпус:</td>
                     <td>
+                        <select name="building">
                         <%=
                             HtmlGenerator.generateBuildingSelectList(null)
                         %>
+                        </select>
                     </td>
                 </tr>
                 <tr>
                     <td>Подразделение:</td>
-                    <td><%= HtmlGenerator.generateUnitSelectList(null)%></td>
+                    <td>
+                        <select name=unit>
+                        <%= HtmlGenerator.generateUnitSelectList(null)%>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>Телефон:</td>

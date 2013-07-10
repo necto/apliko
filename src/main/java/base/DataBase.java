@@ -280,4 +280,10 @@ public class DataBase {
         EntityManager em = getClaimsEM();
         return em.createQuery("select p from PrioritiesEntity p").getResultList();
     }
+
+    public static List<StatusesEntity> listStatuses()
+    {
+        EntityManager em = getClaimsEM();
+        return em.createQuery("select s from StatusesEntity s").getResultList();
+    }
 }

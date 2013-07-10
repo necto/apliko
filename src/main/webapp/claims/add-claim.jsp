@@ -41,9 +41,11 @@
             <tr>
                 <td>Корпус (связан с городком)</td>
                 <td>
+                    <select name="building">
                     <%=
                         HtmlGenerator.generateBuildingSelectList(sample.getBuilding())
                     %>
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -51,7 +53,9 @@
                     Подразделение
                 </td>
                 <td>
-                    <%= HtmlGenerator.generateUnitSelectList(sample.getUnit())%>
+                    <select name=unit>
+                        <%= HtmlGenerator.generateUnitSelectList(sample.getUnit())%>
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -82,13 +86,7 @@
                 <td>Приоритет</td>
                 <td>
                     <select name="priority">
-                        <%
-                            for (PrioritiesEntity pr: DataBase.listPriorities())
-                            {
-                                out.println("<option value=\"" + pr.getId() +
-                                        "\">" + pr.getName() + "</option>");
-                            }
-                        %>
+                        <%=HtmlGenerator.generatePrioritySelectList()%>
                     </select>
                 </td>
             </tr>

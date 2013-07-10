@@ -1,10 +1,7 @@
 package util;
 
 import base.DataBase;
-import base.entities.BuildingsEntity;
-import base.entities.TownsEntity;
-import base.entities.UnitsEntity;
-import base.entities.UsersEntity;
+import base.entities.*;
 
 import java.util.List;
 
@@ -26,7 +23,6 @@ public class HtmlGenerator {
     static public String generateBuildingSelectList(BuildingsEntity def)
     {
         String ret = "";
-        ret += "<select name=\"building\">";
         for ( TownsEntity town : DataBase.listTowns())
         {
             ret += "<option disabled>" + town.getName() + "</option>";
@@ -39,14 +35,12 @@ public class HtmlGenerator {
                         "\">" + building.getName() + "</option>";
             }
         }
-        ret += "</select>";
         return ret;
     }
 
     static public String generateUnitSelectList(UnitsEntity def)
     {
         String ret = "";
-        ret += "<select name=\"unit\">";
         for (UnitsEntity unit: DataBase.listUnits())
         {
             ret += "<option ";
@@ -55,7 +49,28 @@ public class HtmlGenerator {
             ret += "value=\"" + unit.getId() +
                     "\">" + unit.getName() + "</option>";
         }
-        ret += "</select>";
+        return ret;
+    }
+
+    static public String generatePrioritySelectList()
+    {
+        String ret = "";
+        for (PrioritiesEntity pr: DataBase.listPriorities())
+        {
+            ret += "<option value=\"" + pr.getId() +
+                    "\">" + pr.getName() + "</option>";
+        }
+        return ret;
+    }
+
+    static public String generateStatusSelectList()
+    {
+        String ret = "";
+        for (StatusesEntity st: DataBase.listStatuses())
+        {
+            ret += "<option value=\"" + st.getId() +
+                    "\">" + st.getName() + "</option>";
+        }
         return ret;
     }
 
