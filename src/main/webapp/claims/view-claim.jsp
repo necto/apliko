@@ -8,129 +8,131 @@
         <%
             ClaimsEntity claim = DataBase.getClaim(Integer.parseInt(request.getParameter("id")));
         %>
-        <h3>Просмотр заявки.</h3>
-        <table border="1">
-            <tbody>
-                <tr>
-                    <td>
-                        Порядковый номер заявки:
-                    </td>
-                    <td><%=claim.getId()%></td>
-                </tr>
-                <tr>
-                    <td>
-                        ФИО подавшего заявку:
-                    </td>
-                    <td><%=claim.getName() + " " +
-                           claim.getMiddleName() + " " +
-                           claim.getSurname()%></td>
-                </tr>
-                <tr>
-                    <td>
-                        Контактный телефон:
-                    </td>
-                    <td>
-                        <%=claim.getTelephone()%>
-                    </td>
-                </tr>
+        <div class="infobox">
+            <h3>Просмотр заявки.</h3>
+            <table border="1">
+                <tbody>
+                    <tr>
+                        <td>
+                            Порядковый номер заявки:
+                        </td>
+                        <td><%=claim.getId()%></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            ФИО подавшего заявку:
+                        </td>
+                        <td><%=claim.getName() + " " +
+                               claim.getMiddleName() + " " +
+                               claim.getSurname()%></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Контактный телефон:
+                        </td>
+                        <td>
+                            <%=claim.getTelephone()%>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td>
-                        Городок:
-                    </td>
-                    <td>
-                        <%=claim.getBuilding().getTown().getName()%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Корпус:
-                    </td>
-                    <td>
-                        <%=claim.getBuilding().getName()%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Подразделение:
-                    </td>
-                    <td>
-                        <%=claim.getUnit().getName()%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Кабинет:
-                    </td>
-                    <td>
-                        <%=claim.getRoom()%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Тип и модель оборудования:
-                    </td>
-                    <td>
-                        <%=claim.getDeviceType()%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Сервисный номер оборудования:
-                    </td>
-                    <td>
-                        <%=claim.getDeviceNumber()%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Описание проблемы:
-                    </td>
-                    <td>
-                        <%=claim.getProblemDescription()%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Приоритет:
-                    </td>
-                    <td>
-                        <%=claim.getPriority().getName()%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Дополнительный комментарий:
-                    </td>
-                    <td>
-                        <%=claim.getComment()%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Сервисный номер:
-                    </td>
-                    <td>
-                        <%=claim.getServiceNumber()%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Дата добавления:
-                    </td>
-                    <td>
-                        <%=claim.getDate()%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Статус:
-                    </td>
-                    <td>
-                        <%=claim.getStatus().getName()%>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                    <tr>
+                        <td>
+                            Городок:
+                        </td>
+                        <td>
+                            <%=claim.getBuilding().getTown().getName()%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Корпус:
+                        </td>
+                        <td>
+                            <%=claim.getBuilding().getName()%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Подразделение:
+                        </td>
+                        <td>
+                            <%=claim.getUnit().getName()%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Кабинет:
+                        </td>
+                        <td>
+                            <%=claim.getRoom()%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Тип и модель оборудования:
+                        </td>
+                        <td>
+                            <%=claim.getDeviceType()%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Сервисный номер оборудования:
+                        </td>
+                        <td>
+                            <%=claim.getDeviceNumber()%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Описание проблемы:
+                        </td>
+                        <td>
+                            <%=claim.getProblemDescription()%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Приоритет:
+                        </td>
+                        <td>
+                            <%=claim.getPriority().getName()%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Дополнительный комментарий:
+                        </td>
+                        <td>
+                            <%=claim.getComment()%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Сервисный номер:
+                        </td>
+                        <td>
+                            <%=claim.getServiceNumber()%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Дата добавления:
+                        </td>
+                        <td>
+                            <%=claim.getDate()%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Статус:
+                        </td>
+                        <td>
+                            <%=claim.getStatus().getName()%>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </stripes:layout-component>
 </stripes:layout-render>

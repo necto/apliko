@@ -11,48 +11,50 @@
             UserinfoEntity user = DataBase.getUserInfo(request.getParameter("user_name"));
             UsersEntity acc = DataBase.getUserAcc(request.getParameter("user_name"));
         %>
+        <div class="infobox">
         <h3>Просмотр пользователя.</h3>
-        <table border="1">
-            <tbody>
-                <tr>
-                    <td>Ник:</td>
-                    <td><%=user.getUserName()%></td>
-                </tr>
-                <tr>
-                    <td>Имя:</td>
-                    <td><%=user.getName()%></td>
-                </tr>
-                <tr>
-                    <td>Отчество:</td>
-                    <td><%=user.getMiddleName()%></td>
-                </tr>
-                <tr>
-                    <td>Фамилия:</td>
-                    <td><%=user.getSurname()%></td>
-                </tr>
-                <tr>
-                    <td>Роли:</td>
-                    <td><%=HtmlGenerator.generateRolesList(acc)%></td>
-                </tr>
-                <tr>
-                    <td>Городок:</td>
-                    <td><%=user.getBuilding().getTown().getName()%></td>
-                </tr>
-                <tr>
-                    <td>Корпус:</td>
-                    <td><%=user.getBuilding().getName()%></td>
-                </tr>
-                <tr>
-                    <td>Подразделение:</td>
-                    <td><%=user.getUnit().getName()%></td>
-                </tr>
-                <tr>
-                    <td>Телефон:</td>
-                    <td><%=user.getTelephone()%></td>
-                </tr>
-            </tbody>
-        </table>
+            <table border="1">
+                <tbody>
+                    <tr>
+                        <td>Ник:</td>
+                        <td><%=user.getUserName()%></td>
+                    </tr>
+                    <tr>
+                        <td>Имя:</td>
+                        <td><%=user.getName()%></td>
+                    </tr>
+                    <tr>
+                        <td>Отчество:</td>
+                        <td><%=user.getMiddleName()%></td>
+                    </tr>
+                    <tr>
+                        <td>Фамилия:</td>
+                        <td><%=user.getSurname()%></td>
+                    </tr>
+                    <tr>
+                        <td>Роли:</td>
+                        <td><%=HtmlGenerator.generateRolesList(acc)%></td>
+                    </tr>
+                    <tr>
+                        <td>Городок:</td>
+                        <td><%=user.getBuilding().getTown().getName()%></td>
+                    </tr>
+                    <tr>
+                        <td>Корпус:</td>
+                        <td><%=user.getBuilding().getName()%></td>
+                    </tr>
+                    <tr>
+                        <td>Подразделение:</td>
+                        <td><%=user.getUnit().getName()%></td>
+                    </tr>
+                    <tr>
+                        <td>Телефон:</td>
+                        <td><%=user.getTelephone()%></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-        
+
     </stripes:layout-component>
 </stripes:layout-render>

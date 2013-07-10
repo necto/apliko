@@ -15,8 +15,10 @@
             {
                 DataBase.addUser( request.getParameterMap());
         %>
+        <div class="infobox">
             <%=request.getParameter("name") + " " + request.getParameter("middle_name") + " " +
                request.getParameter("surname")%> добавлен в систему
+        </div>
         <%
             }
         %>
@@ -29,7 +31,7 @@
                     throw new RuntimeException( "User can't delete himself!");
                 DataBase.deleteUsers(names);
 
-                out.print("Пользователи: ");
+                out.print("<div class=\"infobox\"> Пользователи: ");
                 Boolean first = true;
                 for ( String name: names)
                 {
@@ -38,32 +40,34 @@
                     out.print(name);
                     first = false;
                 }
-                out.print(" были удалены.");
+                out.print(" были удалены.</div>");
             }
         %>
-        <h3> Пользователи </h3>
+        <div class="infobox">
+            <h3> Пользователи </h3>
 
-        <form action="list-users.jsp">
-            <ul>
-                <%
-                for (UsersEntity user : DataBase.listUsers(request.getParameterMap())) {
-                    out.print("<li>");
+            <form action="list-users.jsp">
+                <ul>
+                    <%
+                    for (UsersEntity user : DataBase.listUsers(request.getParameterMap())) {
+                        out.print("<li>");
 
-                    out.println("<input type=\"checkbox\"" +
-                                " name=\"user\" value=\"" +
-                                user.getUserName() + "\"");
-                    if ( user.getUserName().equals(request.getUserPrincipal().getName()))
-                        out.println(" disabled ");
-                    out.println("/>");
-                    out.println(user.getUserName());
-                    out.println(" <b>roles</b>: ");
+                        out.println("<input type=\"checkbox\"" +
+                                    " name=\"user\" value=\"" +
+                                    user.getUserName() + "\"");
+                        if ( user.getUserName().equals(request.getUserPrincipal().getName()))
+                            out.println(" disabled ");
+                        out.println("/>");
+                        out.println(user.getUserName());
+                        out.println(" <b>roles</b>: ");
 
-                    out.println(user.getRoles());
-                    out.print("</li>");
-                }
-            %>
-            </ul>
-            <button type="submit"  name="delete-users">delete </button>
-        </form>
+                        out.println(user.getRoles());
+                        out.print("</li>");
+                    }
+                %>
+                </ul>
+                <button type="submit"  name="delete-users">delete </button>
+            </form>
+        </div>
     </stripes:layout-component>
 </stripes:layout-render>

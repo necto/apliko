@@ -72,7 +72,7 @@ public class DataBase {
         infoEm.getTransaction().commit();
     }
 
-    public static void addClaim( Map<String, String[]> params, String user)
+    public static Integer addClaim( Map<String, String[]> params, String user)
     {
         EntityManager em = getClaimsEM();
         em.getTransaction().begin();
@@ -98,6 +98,8 @@ public class DataBase {
         clm.setStatus(em.find(StatusesEntity.class, 1));
         em.persist( clm);
         em.getTransaction().commit();
+
+        return clm.getId();
     }
 
     public static ClaimsEntity generateClaimByUser( String userName)
