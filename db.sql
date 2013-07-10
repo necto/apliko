@@ -42,6 +42,16 @@ create table statuses (
        name                 text
 );
 
+create table claim_type (
+       id                   serial primary key,
+       name                 text
+);
+
+create table expendable(
+       device_type          text,
+       model                text
+);
+
 create table claims (
        id                   serial primary key,
        creator_login        text,
@@ -54,6 +64,7 @@ create table claims (
        room                 text,
        device_type          text,
        device_number        text,
+       type                 integer references claim_type,
        problem_description  text,
        priority             integer references priorities,
        comment              text,

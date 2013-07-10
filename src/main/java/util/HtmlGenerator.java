@@ -63,6 +63,17 @@ public class HtmlGenerator {
         return ret;
     }
 
+    static public String generateClaimTypeSelectList()
+    {
+        String ret = "";
+        for (ClaimTypeEntity ct: DataBase.listClaimTypes())
+        {
+            ret += "<option value=\"" + ct.getId() +
+                    "\">" + ct.getName() + "</option>";
+        }
+        return ret;
+    }
+
     static public String generateStatusSelectList()
     {
         String ret = "";

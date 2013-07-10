@@ -4,6 +4,7 @@
 <%@ page import="base.entities.BuildingsEntity" %>
 <%@ page import="base.entities.UnitsEntity" %>
 <%@ page import="util.HtmlGenerator" %>
+<%@ page import="base.entities.ClaimTypeEntity" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <stripes:layout-render name="/layout/default.jsp">
@@ -28,7 +29,14 @@
 
             if ( request.getParameter("delete_unit") != null)
                 DataBase.deleteUnit(Integer.parseInt(request.getParameter("delete_unit")));
+
+            if ( request.getParameter("new_problem_type") != null)
+                DataBase.addClaimType(request.getParameter("new_problem_type"));
+
+            if ( request.getParameter("delete_problem_type") != null)
+                DataBase.deleteClaimType(Integer.parseInt(request.getParameter("delete_problem_type")));
         %>
+        <div class="infobox">
         <h3>Городки</h3>
         <ul class="tree">
             <li>
@@ -62,6 +70,8 @@
                 }
             %>
         </ul>
+        </div>
+        <div class="infobox">
         <h3>Подразделения</h3>
         <ul>
             <li>
@@ -78,5 +88,24 @@
               <%}
             %>
         </ul>
+        </div>
+        <div class="infobox">
+        <h3>Варианты проблем</h3>
+        <ul>
+            <li>
+                <form>
+                    <input type="text" name="new_problem_type"/>
+                    <input type="submit" class="addImg"/>
+                </form>
+            </li>
+            <%
+                for (ClaimTypeEntity type: DataBase.listClaimTypes())
+                {
+                    String del = HtmlGenerator.generateDelBtn("delete_problem_type", type.getId());%>
+                    <li><%=del + type.getName()%></li>
+              <%}
+            %>
+        </ul>
+        </div>
     </stripes:layout-component>
 </stripes:layout-render>

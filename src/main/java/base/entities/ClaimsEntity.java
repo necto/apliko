@@ -28,6 +28,7 @@ public class ClaimsEntity {
     private String serviceNumber;
     private Date date;
     private StatusesEntity status;
+    private ClaimTypeEntity type;
 
     @Column(name = "creator_login")
     @Basic
@@ -89,6 +90,19 @@ public class ClaimsEntity {
         this.building = building;
     }
 
+    public String buildingName() {
+        if ( building != null)
+            return building.getName();
+        return "(пусто)";
+    }
+
+    public String townName() {
+        if ( building != null
+             && building.getTown() != null)
+            return building.getTown().getName();
+        return "(пусто)";
+    }
+
     @JoinColumn(name = "unit")
     @ManyToOne(targetEntity = UnitsEntity.class)
     public UnitsEntity getUnit() {
@@ -97,6 +111,12 @@ public class ClaimsEntity {
 
     public void setUnit(UnitsEntity unit) {
         this.unit = unit;
+    }
+
+    public String unitName() {
+            if ( unit != null)
+                return unit.getName();
+            return "(пусто)";
     }
 
     @Column(name = "room")
@@ -149,6 +169,12 @@ public class ClaimsEntity {
         this.priority = priority;
     }
 
+    public String priorityName() {
+        if ( priority != null)
+            return priority.getName();
+        return "(пусто)";
+    }
+
     @Column(name = "comment")
     @Basic
     public String getComment() {
@@ -187,6 +213,12 @@ public class ClaimsEntity {
 
     public void setStatus(StatusesEntity status) {
         this.status = status;
+    }
+
+    public String statusName() {
+        if ( status != null)
+            return status.getName();
+        return "(пусто)";
     }
 
     @Column(name = "id")
@@ -250,5 +282,22 @@ public class ClaimsEntity {
         result = 31 * result + (date != null ? date.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
         return result;
+    }
+
+
+    @JoinColumn(name = "type")
+    @ManyToOne(targetEntity = ClaimTypeEntity.class)
+    public ClaimTypeEntity getType() {
+        return type;
+    }
+
+    public void setType(ClaimTypeEntity type) {
+        this.type = type;
+    }
+
+    public String typeName() {
+        if ( type != null)
+            return type.getName();
+        return "(пусто)";
     }
 }

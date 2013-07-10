@@ -78,6 +78,14 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>Тип проблемы</td>
+                    <td>
+                        <select name="type">
+                            <%=HtmlGenerator.generateClaimTypeSelectList()%>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
                     <td>Описание проблемы</td>
                     <td>
                         <textarea name="problem_description" rows="4" cols="30"></textarea>

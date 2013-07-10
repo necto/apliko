@@ -40,7 +40,7 @@
                             Городок:
                         </td>
                         <td>
-                            <%=claim.getBuilding().getTown().getName()%>
+                            <%=claim.townName()%>
                         </td>
                     </tr>
                     <tr>
@@ -48,7 +48,7 @@
                             Корпус:
                         </td>
                         <td>
-                            <%=claim.getBuilding().getName()%>
+                            <%=claim.buildingName()%>
                         </td>
                     </tr>
                     <tr>
@@ -56,7 +56,7 @@
                             Подразделение:
                         </td>
                         <td>
-                            <%=claim.getUnit().getName()%>
+                            <%=claim.unitName()%>
                         </td>
                     </tr>
                     <tr>
@@ -85,6 +85,14 @@
                     </tr>
                     <tr>
                         <td>
+                            Тип проблемы:
+                        </td>
+                        <td>
+                            <%=claim.typeName()%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             Описание проблемы:
                         </td>
                         <td>
@@ -96,7 +104,7 @@
                             Приоритет:
                         </td>
                         <td>
-                            <%=claim.getPriority().getName()%>
+                            <%=claim.priorityName()%>
                         </td>
                     </tr>
                     <tr>
@@ -128,7 +136,7 @@
                             Статус:
                         </td>
                         <td>
-                            <%=claim.getStatus().getName()%>
+                            <%=claim.statusName()%>
                         </td>
                     </tr>
                 </tbody>

@@ -82,16 +82,34 @@ public class DataBase {
         clm.setMiddleName(params.get("middle_name")[0]);
         clm.setSurname(params.get("surname")[0]);
         clm.setTelephone(params.get("telephone")[0]);
-        clm.setBuilding( em.find(BuildingsEntity.class,
-                                 Integer.parseInt(params.get("building")[0])));
-        clm.setUnit( em.find(UnitsEntity.class,
-                             Integer.parseInt(params.get("unit")[0])));
+        if ( params.get("building") != null &&
+             !params.get("building")[0].isEmpty() )
+        {
+            clm.setBuilding( em.find(BuildingsEntity.class,
+                                     Integer.parseInt(params.get("building")[0])));
+        }
+        if ( params.get("unit") != null &&
+                !params.get("unit")[0].isEmpty() )
+        {
+            clm.setUnit( em.find(UnitsEntity.class,
+                                 Integer.parseInt(params.get("unit")[0])));
+        }
         clm.setRoom(params.get("room")[0]);
         clm.setDeviceType(params.get("device_type")[0]);
         clm.setDeviceNumber(params.get("device_number")[0]);
         clm.setProblemDescription(params.get("problem_description")[0]);
-        clm.setPriority(em.find(PrioritiesEntity.class,
-                                Integer.parseInt(params.get("priority")[0])));
+        if ( params.get("type") != null &&
+                !params.get("type")[0].isEmpty() )
+        {
+            clm.setType(em.find(ClaimTypeEntity.class,
+                                Integer.parseInt(params.get("type")[0])));
+        }
+        if ( params.get("priority") != null &&
+                !params.get("priority")[0].isEmpty() )
+        {
+            clm.setPriority(em.find(PrioritiesEntity.class,
+                    Integer.parseInt(params.get("priority")[0])));
+        }
         clm.setComment(params.get("comment")[0]);
         clm.setServiceNumber(params.get("service_number")[0]);
         clm.setDate(new Date());
@@ -271,6 +289,32 @@ public class DataBase {
         em.getTransaction().commit();
     }
 
+    public static void addClaimType( String name)
+    {
+        EntityManager em = getClaimsEM();
+
+        em.getTransaction().begin();
+        ClaimTypeEntity type = new ClaimTypeEntity();
+        type.setName( name);
+        em.persist(type);
+        em.getTransaction().commit();
+    }
+
+    public static void deleteClaimType( Integer id)
+    {
+        EntityManager em = getClaimsEM();
+
+        em.getTransaction().begin();
+        ClaimTypeEntity type = em.find(ClaimTypeEntity.class, id);
+        for (ClaimsEntity claim : type.getClaims())
+        {
+            claim.setType(null);
+            em.persist(claim);
+        }
+        em.remove(type);
+        em.getTransaction().commit();
+    }
+
     public static List<UnitsEntity> listUnits()
     {
         EntityManager em = getClaimsEM();
@@ -281,6 +325,12 @@ public class DataBase {
     {
         EntityManager em = getClaimsEM();
         return em.createQuery("select p from PrioritiesEntity p").getResultList();
+    }
+
+    public static List<ClaimTypeEntity> listClaimTypes()
+    {
+        EntityManager em = getClaimsEM();
+        return em.createQuery("select ct from ClaimTypeEntity ct").getResultList();
     }
 
     public static List<StatusesEntity> listStatuses()

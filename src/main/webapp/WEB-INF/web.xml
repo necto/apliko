@@ -54,7 +54,9 @@
        <url-pattern>/accs/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
-       <role-name>manager</role-name>
+        <role-name>manager</role-name>
+        <role-name>customer</role-name>
+        <role-name>executor</role-name>
     </auth-constraint>
   </security-constraint>
     <security-constraint>
@@ -69,7 +71,7 @@
     </security-constraint>
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>/geo/*</web-resource-name>
+            <web-resource-name>/org/*</web-resource-name>
         </web-resource-collection>
         <auth-constraint>
             <role-name>manager</role-name>
