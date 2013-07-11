@@ -26,7 +26,7 @@ public class SortingGenerator {
     public String generate()
     {
         if (field == null ||
-                field == "")
+                field.equals(""))
             return "";
         return " order by " + var + "." + field + " " + direction;
     }

@@ -128,7 +128,15 @@
                             Дата добавления:
                         </td>
                         <td>
-                            <%=claim.getDate()%>
+                            <%=claim.getCreated()%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Дата обновления:
+                        </td>
+                        <td>
+                            <%=claim.getUpdated()%>
                         </td>
                     </tr>
                     <tr>

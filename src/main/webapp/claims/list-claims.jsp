@@ -94,7 +94,7 @@
                 <th><%=srt.makeColumnHeader("Описание проблемы", "problemDescription")%></th>
                 <th><%=srt.makeColumnHeader("Приоритет", "priority")%></th>
                 <th><%=srt.makeColumnHeader("Комментарий", "comment")%></th>
-                <th><%=srt.makeColumnHeader("Дата добавления", "date")/*TODO: update date*/%></th>
+                <th><%=srt.makeColumnHeader("Дата обновления", "updated")/*TODO: update date*/%></th>
                 <th><%=srt.makeColumnHeader("Статус", "status")%></th>
             </tr>
             <%
@@ -136,7 +136,7 @@
                     <%=HtmlGenerator.abbreviatedText(claim.getComment())%>
                     </td>
                     <td>
-                    <%=claim.getDate()%>
+                    <%=claim.getUpdated()%>
                     </td>
                     <td>
                         <font color="<%=claim.statusColor()%>"

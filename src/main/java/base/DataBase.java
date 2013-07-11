@@ -7,6 +7,7 @@ import util.SortingGenerator;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.sql.Timestamp;
 import java.util.*;
 
 public class DataBase {
@@ -112,7 +113,8 @@ public class DataBase {
         }
         clm.setComment(params.get("comment")[0]);
         clm.setServiceNumber(params.get("service_number")[0]);
-        clm.setDate(new Date());
+        clm.setCreated(new Timestamp(new Date().getTime()));
+        clm.setUpdated(new Timestamp(new Date().getTime()));
         clm.setStatus(em.find(StatusesEntity.class, 1));
         em.persist( clm);
         em.getTransaction().commit();

@@ -71,7 +71,8 @@ create table claims (
        priority             integer references priorities,
        comment              text,
        service_number       text,
-       date                 date,
+       created              timestamp,
+       updated              timestamp,
        status               integer references statuses
 );
 

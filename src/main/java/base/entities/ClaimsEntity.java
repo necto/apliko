@@ -1,6 +1,7 @@
 package base.entities;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -26,9 +27,10 @@ public class ClaimsEntity {
     private PrioritiesEntity priority;
     private String comment;
     private String serviceNumber;
-    private Date date;
     private StatusesEntity status;
     private ClaimTypeEntity type;
+    private Timestamp created;
+    private Timestamp updated;
 
     @Column(name = "creator_login")
     @Basic
@@ -201,15 +203,6 @@ public class ClaimsEntity {
         this.serviceNumber = serviceNumber;
     }
 
-    @Column(name = "date")
-    @Basic
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
 
     @JoinColumn(name = "status")
     @ManyToOne(targetEntity = StatusesEntity.class)
@@ -258,7 +251,6 @@ public class ClaimsEntity {
         if (id != that.id) return false;
         if (comment != null ? !comment.equals(that.comment) : that.comment != null) return false;
         if (creatorLogin != null ? !creatorLogin.equals(that.creatorLogin) : that.creatorLogin != null) return false;
-        if (date != null ? !date.equals(that.date) : that.date != null) return false;
         if (deviceNumber != null ? !deviceNumber.equals(that.deviceNumber) : that.deviceNumber != null) return false;
         if (deviceType != null ? !deviceType.equals(that.deviceType) : that.deviceType != null) return false;
         if (middleName != null ? !middleName.equals(that.middleName) : that.middleName != null) return false;
@@ -291,11 +283,9 @@ public class ClaimsEntity {
         result = 31 * result + (priority != null ? priority.hashCode() : 0);
         result = 31 * result + (comment != null ? comment.hashCode() : 0);
         result = 31 * result + (serviceNumber != null ? serviceNumber.hashCode() : 0);
-        result = 31 * result + (date != null ? date.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
         return result;
     }
-
 
     @JoinColumn(name = "type")
     @ManyToOne(targetEntity = ClaimTypeEntity.class)
@@ -311,5 +301,25 @@ public class ClaimsEntity {
         if ( type != null)
             return type.getName();
         return "(пусто)";
+    }
+
+    @Column(name = "created")
+    @Basic
+    public Timestamp getCreated() {
+        return created;
+    }
+
+    public void setCreated(Timestamp created) {
+        this.created = created;
+    }
+
+    @Column(name = "updated")
+    @Basic
+    public Timestamp getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(Timestamp updated) {
+        this.updated = updated;
     }
 }
