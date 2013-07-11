@@ -12,16 +12,17 @@ import java.util.*;
 
 public class DataBase {
 
+    static EntityManagerFactory authEmf = Persistence.createEntityManagerFactory("authPU");
+    static EntityManagerFactory persEmf = Persistence.createEntityManagerFactory("persUnit");
+
     private static EntityManager getAuthEM()
     {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("authPU");
-        return emf.createEntityManager();
+        return authEmf.createEntityManager();
     }
 
     private static EntityManager getClaimsEM()
     {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persUnit");
-        return emf.createEntityManager();
+        return persEmf.createEntityManager();
     }
 
     public static void deleteUsers(String[] names)
