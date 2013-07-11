@@ -20,7 +20,7 @@
                 </tr>
                 <tr>
                     <td>
-                        Роль:
+                        Статус:
                     </td>
                     <td>
                         <input type="radio" name="user-role" value="manager"/> Администратор<br/>

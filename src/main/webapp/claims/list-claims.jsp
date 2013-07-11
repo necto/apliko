@@ -75,7 +75,7 @@
             </select><br/>
             <label for="fltr-service_number">Сервисный номер</label>
             <input type="text" name="fltr-service_number" id="fltr-service_number"/><br/>
-            <input type="submit"/>
+            <input type="submit" value="Фильтровать"/>
         </form>
         </div></div>
     <div class="infobox">

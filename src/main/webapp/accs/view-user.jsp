@@ -32,7 +32,7 @@
                         <td><%=user.getSurname()%></td>
                     </tr>
                     <tr>
-                        <td>Роли:</td>
+                        <td>Статус:</td>
                         <td><%=HtmlGenerator.generateRolesList(acc)%></td>
                     </tr>
                     <tr>

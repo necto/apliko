@@ -42,7 +42,11 @@
                         throw new RuntimeException( "User can't delete himself!");
                     DataBase.deleteUsers(names);
 
-                    out.print("<div class=\"infobox\"> Пользователи: ");
+                    out.print("<div class=\"infobox\">");
+                    if ( names.length == 1)
+                        out.print("Пользователь ");
+                    else
+                        out.print("Пользователи: ");
                     Boolean first = true;
                     for ( String name: names)
                     {
@@ -51,14 +55,49 @@
                         out.print(name);
                         first = false;
                     }
-                    out.print(" были удалены.</div>");
+                    if ( names.length == 1)
+                        out.println(" был удален.</div>");
+                    else
+                        out.println(" были удалены.</div>");
                 }
             }
 
-            List<UsersEntity> logins = DataBase.listUsers(request.getParameterMap());
             List<UserinfoEntity> users = DataBase.listUserinfos(request.getParameterMap());
             SortingGenerator srt = new SortingGenerator(request.getParameterMap());
         %>
+
+        <div class="infobox">
+            <button onclick="toggle('filters')">Фильтры</button>
+            <div id="filters" style="display:none;">
+                <form>
+                    <label for="fltr-user_name">Логин пользователя</label>
+                    <input type="text" name="fltr-user_name" id="fltr-user_name"/><br/>
+                    <label for="fltr-surname">Фамилия</label>
+                    <input type="text" name="fltr-surname" id="fltr-surname"/><br/>
+                    <label for="fltr-name">Имя</label>
+                    <input type="text" name="fltr-name" id="fltr-name" /><br/>
+                    <label for="fltr-middle_name">Отчество</label>
+                    <input type="text" name="fltr-middle_name" id="fltr-middle_name"/><br/>
+                    <label for="fltr-building">Корпус</label>
+                    <select name="fltr-building" id="fltr-building">
+                        <option value="0" selected>--</option>
+                        <%=
+                        HtmlGenerator.generateBuildingSelectList(null)
+                        %>
+                    </select><br/>
+                    <label for="fltr-unit">Подразделение</label>
+                    <select name="fltr-unit" id="fltr-unit">
+                        <option value="0" selected>--</option>
+                        <%=
+                        HtmlGenerator.generateUnitSelectList(null)
+                        %>
+                    </select><br/>
+                    <label for="fltr-telephone">Телефон</label>
+                    <input type="text" name="fltr-telephone" id="fltr-telephone"/><br/>
+                    <input type="submit" value="Фильтровать"/>
+                </form>
+            </div>
+        </div>
         <div class="infobox">
             <h3> Пользователи </h3>
 
@@ -71,16 +110,13 @@
                     <th><%=srt.makeColumnHeader("Городок", "building")%></th>
                     <th><%=srt.makeColumnHeader("Корпус", "building")%></th>
                     <th><%=srt.makeColumnHeader("Подразделение", "unit")%></th>
-                    <th>Роли</th>
+                    <th>Статус</th>
                     <th>Удалить</th>
                 </tr>
                 <%
-                    for (UsersEntity login : logins) {
-                        UserinfoEntity user = null;
-                        for (UserinfoEntity u : users)
-                            if (u.getUserName().equals(login.getUserName()))
-                                user = u;
-                        if ( user != null)
+                    for (UserinfoEntity user : users) {
+                        UsersEntity login =DataBase.getUserAcc(user.getUserName());
+                        if ( login != null)
                         {
                 %>
                 <tr class="tickets_table">
@@ -136,26 +172,6 @@
             </table>
                 <div style="text-align: center"><button type="submit"  name="delete-users">Удалить </button></div>
             </form>
-
-                <ul>
-                    <%
-                    for (UsersEntity user : DataBase.listUsers(request.getParameterMap())) {
-                        out.print("<li>");
-
-                        out.println("<input type=\"checkbox\"" +
-                                    " name=\"user\" value=\"" +
-                                    user.getUserName() + "\"");
-                        if ( user.getUserName().equals(request.getUserPrincipal().getName()))
-                            out.println(" disabled ");
-                        out.println("/>");
-                        out.println(user.getUserName());
-                        out.println(" <b>roles</b>: ");
-
-                        out.println(user.getRoles());
-                        out.print("</li>");
-                    }
-                %>
-                </ul>
         </div>
     </stripes:layout-component>
 </stripes:layout-render>
