@@ -1,19 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <stripes:layout-render name="/layout/basic.jsp">
-<stripes:layout-component name="title"> Login </stripes:layout-component>
+<stripes:layout-component name="title"> Вход в систему </stripes:layout-component>
 <stripes:layout-component name="content">
     <form method="POST" action="j_security_check" name="form">
-        <table border="0" style="margin-left:0.25em;">
+        <table class="outertable" border="0" align="center" cellpadding="4" width="75%" cellspacing="0" border="0">
             <tr>
-                <td><label>User Name</label></td>
+                <td><label>Логин</label></td>
                 <td><input type="text" name="j_username" maxlength="20" style="width:150px;"/></td>
-                <td>&nbsp;</td>
             </tr>
             <tr>
-                <td><label>User Password</label></td>
+                <td><label>Пароль</label></td>
                 <td><input type="password" name="j_password" maxlength="20" style="width:150px;"/></td>
-                <td><button type="submit" > login </button></td>
+            </tr>
+            <tr>
+                <td align="center" colspan="2">
+                    <button type="submit" > Войти </button>
+                </td>
             </tr>
         </table>
     </form>

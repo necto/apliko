@@ -6,7 +6,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <stripes:layout-render name="/layout/default.jsp">
-<stripes:layout-component name="title"> List of all claims </stripes:layout-component>
+<stripes:layout-component name="title"> Список заявок </stripes:layout-component>
 <stripes:layout-component name="content">
     <%
         List<ClaimsEntity> claims = DataBase.listClaims(request.getParameterMap());
@@ -20,6 +20,9 @@
     <%
         }
     %>
+    <div class="infobox">
+        <a href="<%=request.getContextPath()%>/claims/add-claim.jsp"> Добавить заявку</a>
+    </div>
     <div class="infobox">
         <button onclick="toggle('filters')">Фильтры</button>
         <div id="filters" style="display:none;">
@@ -79,7 +82,7 @@
         </form>
         </div></div>
     <div class="infobox">
-        <h2>Найдено <%=claims.size()%> заявок</h2>
+        <h2>Найдено заявок: <%=claims.size()%> </h2>
         <table class="tickets_table">
             <tr>
                 <th><%=srt.makeColumnHeader("№", "id")%></th>

@@ -2,13 +2,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <stripes:layout-render name="/layout/default.jsp">
-    <stripes:layout-component name="title"> Add a new user </stripes:layout-component>
+    <stripes:layout-component name="title"> Добавление нового пользователя </stripes:layout-component>
     <stripes:layout-component name="content">
 
-        <h3> Добавить нового пользователя.</h3>
-
         <form action="list-users.jsp" method="post">
-            <table class="form" border="1">
+            <table class="outertable" align="center">
                 <tbody>
                 <tr>
                     <td>Ник пользователя:</td>
@@ -65,7 +63,7 @@
                 </tbody>
             </table>
 
-            <input type="submit" name="add-user"/>
+            <input type="submit" name="add-user" value="Добавить"/>
         </form>
     </stripes:layout-component>
 </stripes:layout-render>

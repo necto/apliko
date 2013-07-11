@@ -10,7 +10,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <stripes:layout-render name="/layout/default.jsp">
-    <stripes:layout-component name="title"> List all users </stripes:layout-component>
+    <stripes:layout-component name="title"> Список пользователей </stripes:layout-component>
     <stripes:layout-component name="content">
 
         <%
@@ -65,6 +65,9 @@
             List<UserinfoEntity> users = DataBase.listUserinfos(request.getParameterMap());
             SortingGenerator srt = new SortingGenerator(request.getParameterMap());
         %>
+        <div class="infobox">
+            <a href="<%=request.getContextPath()%>/accs/add-user.jsp"> Добавить пользователя</a>
+        </div>
 
         <div class="infobox">
             <button onclick="toggle('filters')">Фильтры</button>
@@ -124,8 +127,7 @@
                         <%=login.getUserName()%>
                     </a></b></td>
                     <td>
-                        <%= user.getName() + " " + user.getMiddleName() + " " +
-                                user.getSurname()%>
+                        <%= user.fullName()%>
                     </td>
                     <td>
                         <%= user.getTelephone()%>

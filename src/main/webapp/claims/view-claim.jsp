@@ -3,14 +3,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <stripes:layout-render name="/layout/default.jsp">
-    <stripes:layout-component name="title"> Просмотр заявки: </stripes:layout-component>
+    <stripes:layout-component name="title"> Просмотр заявки </stripes:layout-component>
     <stripes:layout-component name="content">
         <%
             ClaimsEntity claim = DataBase.getClaim(Integer.parseInt(request.getParameter("id")));
         %>
-        <div class="infobox">
-            <h3>Просмотр заявки.</h3>
-            <table border="1">
+            <table align="center" class="outertable">
                 <tbody>
                     <tr>
                         <td>
@@ -149,6 +147,5 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
     </stripes:layout-component>
 </stripes:layout-render>

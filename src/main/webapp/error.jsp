@@ -3,10 +3,14 @@
 <stripes:layout-render name="/layout/basic.jsp">
 <stripes:layout-component name="title"> Login failed </stripes:layout-component>
 <stripes:layout-component name="content">
-    <h2> Your username or password is incorrect. Please try again, or contact administrator.</h2>
+    <div class="infobox_error">
+        Введенная пара логин-пароль не действительна. Пожалуйста, попробуйте еще раз, или обратитесь к администратору.</h2>
+    </div>
+    <div class="infobox">
     <form>
-        <input type="button" value="Try again."
+        <input type="button" value="Попробывать снова."
                onClick="javascript: history.go(-1)">
     </form>
+    </div>
 </stripes:layout-component>
 </stripes:layout-render>

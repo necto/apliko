@@ -1,11 +1,17 @@
+<%@ page import="base.DataBase" %>
+<%@ page import="base.entities.UserinfoEntity" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div id="login">
     <% if ( request.getUserPrincipal() != null ) { %>
-    You are logged in as:
+    Добро пожаловать,
     <div id="username">
-        <%= request.getUserPrincipal().getName() %>
+        <%
+            UserinfoEntity uinfo = DataBase.getUserInfo(request.getUserPrincipal().getName());
+        %>
+        <%=uinfo == null ? "??" : uinfo.fullName()%>
     </div>
-    <a href="<%=request.getContextPath()%>/logout.jsp">logout</a>
+    <a href="<%=request.getContextPath()%>/logout.jsp">выход</a>
     <% } else { %>
-    You are not logged in.
+    Вы не вошли в систему.
     <% } %>
 </div>

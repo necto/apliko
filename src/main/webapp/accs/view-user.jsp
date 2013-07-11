@@ -11,12 +11,10 @@
             UserinfoEntity user = DataBase.getUserInfo(request.getParameter("user_name"));
             UsersEntity acc = DataBase.getUserAcc(request.getParameter("user_name"));
         %>
-        <div class="infobox">
-        <h3>Просмотр пользователя.</h3>
-            <table border="1">
+            <table align="center" class="outertable">
                 <tbody>
                     <tr>
-                        <td>Ник:</td>
+                        <td>Логин:</td>
                         <td><%=user.getUserName()%></td>
                     </tr>
                     <tr>

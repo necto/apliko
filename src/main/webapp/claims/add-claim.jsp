@@ -12,7 +12,7 @@
             ClaimsEntity sample = DataBase.generateClaimByUser(request.getUserPrincipal().getName());
         %>
             <h3>Сведения для заявки:</h3>
-            <table class="form" border="1" width="6">
+            <table class="outertable" align="center">
                 <tbody>
                 <tr>
                     <td>Ваша фамилия</td>
