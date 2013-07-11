@@ -9,6 +9,7 @@
 <stripes:layout-component name="title"> List of all claims </stripes:layout-component>
 <stripes:layout-component name="content">
     <%
+        List<ClaimsEntity> claims = DataBase.listClaims(request.getParameterMap());
         SortingGenerator srt = new SortingGenerator(request.getParameterMap());
         if (request.getParameter("add-claim") != null)
         {
@@ -78,10 +79,7 @@
         </form>
         </div></div>
     <div class="infobox">
-        <h2>Найденные заявки: </h2>
-        <%
-            List<ClaimsEntity> claims = DataBase.listClaims(request.getParameterMap());
-        %>
+        <h2>Найдено <%=claims.size()%> заявок</h2>
         <table class="tickets_table">
             <tr>
                 <th><%=srt.makeColumnHeader("№", "id")%></th>
@@ -94,7 +92,7 @@
                 <th><%=srt.makeColumnHeader("Описание проблемы", "problemDescription")%></th>
                 <th><%=srt.makeColumnHeader("Приоритет", "priority")%></th>
                 <th><%=srt.makeColumnHeader("Комментарий", "comment")%></th>
-                <th><%=srt.makeColumnHeader("Дата обновления", "updated")/*TODO: update date*/%></th>
+                <th><%=srt.makeColumnHeader("Дата обновления", "updated")%></th>
                 <th><%=srt.makeColumnHeader("Статус", "status")%></th>
             </tr>
             <%
@@ -120,7 +118,7 @@
                     </td>
                     <td>
                     <%=claim.getServiceNumber()%>
-                    </td>"
+                    </td>
                     <td>
                     <%=claim.typeName()%>
                     </td>
@@ -128,9 +126,9 @@
                     <%=HtmlGenerator.abbreviatedText(claim.getProblemDescription())%>
                     </td>
                     <td>
-                        <font color="<%=claim.priorityColor()%>">
+                        <div style="color:<%=claim.priorityColor()%>;">
                         <%=claim.priorityName()%>
-                        </font>
+                        </div>
                     </td>
                     <td>
                     <%=HtmlGenerator.abbreviatedText(claim.getComment())%>
@@ -139,9 +137,9 @@
                     <%=claim.getUpdated()%>
                     </td>
                     <td>
-                        <font color="<%=claim.statusColor()%>"
+                        <div style="color:<%=claim.statusColor()%>;">
                         <%=claim.statusName()%>
-                        </font>
+                        </div>
                     </td></tr>
               <%}
             %>

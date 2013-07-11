@@ -1,3 +1,6 @@
 <div id="footer" class="site-footer">
-    Copyright &copy; MIPT 2013
+    <div style="text-align: center">
+        &copy; MIPT 2013 </br>
+        development: Iliin Dmitry, Zaostrovnykh Arseniy
+    </div>
 </div> <!-- Arseniy Zaostrovnykh, Dmitry Il'in -->

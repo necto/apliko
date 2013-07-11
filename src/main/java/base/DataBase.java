@@ -162,6 +162,15 @@ public class DataBase {
         return keepOnlyRelevantUsers(ret);
     }
 
+    public static List<UserinfoEntity> listUserinfos(Map<String, String[]> params)
+    {
+        EntityManager em = getClaimsEM();
+        List<UserinfoEntity> ret =  em.createQuery("select u from UserinfoEntity u " +
+                new FilterGenerator(params).variable("u").generate() +
+                new SortingGenerator(params).variable("u").generate()).getResultList();
+        return ret;
+    }
+
     public static List<ClaimsEntity> listClaims(Map<String, String[]> params)
     {
         EntityManager em = getClaimsEM();
